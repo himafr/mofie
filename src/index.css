@@ -22,3 +22,10 @@ body{
 .active{
 color: var(--color-green-200);
 }
+::-webkit-scrollbar{
+  height: 5px;
+}
+ ::-webkit-scrollbar-thumb {
+    background: rgba(29, 185, 84, 0.222) ;
+    border-radius: 10px;
+  }
