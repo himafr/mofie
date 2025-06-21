@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { QuestionTypes } from "../types/types";
+import { QuestionTypes } from "../../types/types";
 
 function QuestionCard({id,answer,q}:QuestionTypes) {
 
