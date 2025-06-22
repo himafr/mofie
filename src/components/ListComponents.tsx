@@ -1,17 +1,17 @@
 import MultiImgCardComponent from "./MultiImgCardComponent"
 
-function ListComponents() {
+function ListComponents({top=false}:{top?:boolean}) {
     return (
         <div className="flex overflow-x-auto space-x-4 mt-10">
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
-            <MultiImgCardComponent img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
+            <MultiImgCardComponent top={top} img="images/img.jpg"/>
 
         </div>
     )

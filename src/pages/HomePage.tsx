@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <div className="px-2 md:px-20 text-[14px] md:text-[16px]">
 
-      <div className="w-screen h-screen">
+      <div className="w-full h-screen">
         <img
           src="images/movies.jpeg"
           className="absolute inset-0 w-screen h-full object-cover "
