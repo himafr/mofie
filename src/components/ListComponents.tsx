@@ -12,7 +12,6 @@ function ListComponents({top=false}:{top?:boolean}) {
             <MultiImgCardComponent top={top} img="images/img.jpg"/>
             <MultiImgCardComponent top={top} img="images/img.jpg"/>
             <MultiImgCardComponent top={top} img="images/img.jpg"/>
-
         </div>
     )
 }

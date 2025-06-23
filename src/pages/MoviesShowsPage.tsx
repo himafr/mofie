@@ -1,11 +1,10 @@
 import HeaderComponent from "../components/shared/HeaderComponent";
-import ListDevices from "../components/homePage/ListDevices";
 import ListComponents from "../components/ListComponents";
-import ListPlanComponent from "../components/ListPlanComponent";
-import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
 import PrimaryButton from "../components/shared/PrimaryButton";
 import { useState } from "react";
 import IconBorder from "../components/shared/IconBorder";
+import ListImgCardComponent from "../components/shows movies/ListImgCardComponent";
+import { Category, ShowType } from "../types/types";
 
 function MoviesShowsPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
@@ -32,7 +31,7 @@ function MoviesShowsPage() {
               matter who they face... Avenge the fallen.
             </p>
 
-            <div className="flex  justify-center gap-3 items-center">
+            <div className="flex flex-col  md:flex-row justify-center gap-3 items-center">
               <PrimaryButton
                 classNme="items-center h-12 "
                 icon={
@@ -51,7 +50,7 @@ function MoviesShowsPage() {
                 <IconBorder src="svg/audio.svg" />
               </div>
             </div>
-            <div className="w-full flex justify-between items-end my-5">
+            <div className="w-full  justify-between items-end my-5  hidden md:flex">
               <IconBorder src="svg/left-arrow.svg" />
               <div>photos</div>
               <IconBorder src="svg/right-arrow.svg" />
@@ -60,11 +59,15 @@ function MoviesShowsPage() {
         </div>
       </div>
 
+      {/* movies */}
+
+{/* Our Genres */}
+
       <section className="mt-[15vh]">
         <PrimaryButton title="Movies" classNme="mb-5" />
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Our Genres</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
@@ -73,10 +76,11 @@ function MoviesShowsPage() {
         <ListComponents />
       </section>
 
+          {/* Popular Top 10 In Genres */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Popular Top 10 In Genres</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
@@ -84,45 +88,52 @@ function MoviesShowsPage() {
         </div>
         <ListComponents top={true} />
       </section>
+
+          {/* Trending Now */}
+
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Trending Now</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Movie} category={Category.Trending} />
       </section>
+          {/* New Releases */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">New Releases</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Movie} category={Category.Releases} />
       </section>
+          {/* Must - Watch Movies */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Must - Watch Movies</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Movie} category={Category.Watch} />
       </section>
+{/* Shows */}
+{/* Our Genres */}
 
       <section className="mt-[15vh]">
         <PrimaryButton title="Shows" classNme="mb-5" />
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Our Genres</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
@@ -130,11 +141,12 @@ function MoviesShowsPage() {
         </div>
         <ListComponents />
       </section>
+          {/* Popular Top 10 In Genres */}
 
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Popular Top 10 In Genres</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
@@ -142,38 +154,42 @@ function MoviesShowsPage() {
         </div>
         <ListComponents top={true} />
       </section>
+
+          {/* Trending Now */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Trending Shows Now</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Show} category={Category.Trending} />
       </section>
+          {/* New Releases */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">New Released Shows</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Show} category={Category.Releases} />
       </section>
+          {/* Must - Watch Movies */}
       <section className="mt-[10vh]">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Must - Watch Shows</p>
-          <div className=" flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
+          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
             <IconBorder src="svg/left-arrow.svg" />
             <div>photos</div>
             <IconBorder src="svg/right-arrow.svg" />
           </div>
         </div>
-        <ListComponents top={true} />
+        <ListImgCardComponent type={ShowType.Show} category={Category.Watch} />
       </section>
 
 

@@ -9,7 +9,7 @@ function HeaderComponent({
 }) {
   return (
     <div className="flex items-center justify-between md:justify-around">
-      <img src="svg/logo.svg" className="w-10 md:w-15" alt="logo" />
+      <img src="/svg/logo.svg" className="w-10 md:w-15" alt="logo" />
 
       <ul className="gap-4 hidden md:flex">
         <NavLink to="/">Home </NavLink>
@@ -18,11 +18,11 @@ function HeaderComponent({
         <NavLink to="/subscriptions">Subscriptions </NavLink>
       </ul>
       <div className="hidden md:flex gap-4 ">
-        <img src="svg/search.svg" alt="" />
-        <img src="svg/notification.svg" alt="" />
+        <img src="/svg/search.svg" alt="" />
+        <img src="/svg/notification.svg" alt="" />
       </div>
       <img
-        src="svg/menu.svg"
+        src="/svg/menu.svg"
         className="md:hidden"
         onClick={() => openNav(true)}
         alt=""

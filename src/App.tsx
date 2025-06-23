@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router"
 import NotFoundPage from "./pages/NotFoundPage"
 import HomePage from "./pages/HomePage"
 import MoviesShowsPage from "./pages/MoviesShowsPage"
+import MoviePage from "./pages/MoviePage"
 
 function App() {
     return (
@@ -11,7 +12,7 @@ function App() {
             <Route path="/support" />
             <Route path="/subscriptions" />
             <Route path="/movies_shows" element={<MoviesShowsPage />}/>
-            <Route path="/movies_shows/movie/:id" />
+            <Route path="/movies_shows/movie/:id" element={<MoviePage />} />
             <Route path="/movies_shows/show/:id" />
 
             <Route path="*" element={<NotFoundPage />} />
