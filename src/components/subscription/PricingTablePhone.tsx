@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { PlanTypes } from "../../types/types";
-import BadgeComponent from "../shared/BadgeComponent";
 import clsx from "clsx";
 
 const plansName = ['Basic', 'Standard', 'Premium'];
