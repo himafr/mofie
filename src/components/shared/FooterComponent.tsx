@@ -100,7 +100,6 @@ function FooterComponent({ className }: { className?: string }) {
               Features
             </li>
           </ul>
-
           <ul>
             <li>Connect With Us </li>
             <div className="flex gap-2.5">
