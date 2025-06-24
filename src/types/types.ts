@@ -4,11 +4,23 @@ export interface QuestionTypes {
   answer: string;
 }
 export interface PlanTypes {
-  title: string;
-  description: string;
-  time: string;
-  price: number;
-}
+
+  time?: string;
+
+  name: string;
+  highlight?: boolean;
+  price: string;
+  content: string;
+  devices?: string;
+  trial?: string;
+  cancel?: string;
+  hdr?: string;
+  dolby?: string;
+  ads?: string;
+  offline?: string;
+  family?: string;
+};
+
 export interface DeviceTypes {
   name: string;
   description: string;

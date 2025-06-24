@@ -1,13 +1,14 @@
 import { useState } from "react";
-import PrimaryButton from "../components/shared/PrimaryButton";
+import BadgeComponent from "../components/shared/BadgeComponent";
 import HeaderComponent from "../components/shared/HeaderComponent";
 import IconBorder from "../components/shared/IconBorder";
+import PrimaryButton from "../components/shared/PrimaryButton";
 import ReviewComponent from "../components/shared/ReviewComponent";
-import BadgeComponent from "../components/shared/BadgeComponent";
+import SeasonComponent from "../components/shows movies/SeasonComponent";
 import FreeTrail from "../components/shared/FreeTrail";
 import FooterComponent from "../components/shared/FooterComponent";
 
-function MoviePage() {
+function SeriesPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
 
   return (
@@ -56,16 +57,27 @@ function MoviePage() {
       </div>
 
       <section className="block md:flex gap-5  py-10 items-start ">
-        <div className="md:w-[70%]">
+        <div className="md:w-[70%] ">
+          {/* seasons and episodes */}
+          <div className="py-5 md:p-10  bg-black10 rounded-[10px] mb-5 border border-border">
+            <div className="font-semibold text-2xl mb-5">
+              Seasons and Episodes
+            </div>
+<SeasonComponent season="Season 01" />
+<SeasonComponent season="Season 02" />
+<SeasonComponent season="Season 03" />
+            
+            
+          </div>
           {/* description */}
-          <div className="p-10 bg-black10 rounded-[10px] mb-5">
+          <div className="p-10 bg-black10 rounded-[10px] mb-5 border border-border">
             <div className="text-subtitle mb-5">description</div>A fiery young
             man clashes with an unflinching forest officer in a south Indian
             village where spirituality, fate and folklore rule the lands.
           </div>
 
           {/* Cast */}
-          <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-5">
+          <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-5 border border-border">
             <div className="text-subtitle mb-5">Cast</div>
             <div className="flex overflow-x-auto space-x-4">
               {[...Array(15)].map((_, idx) => (
@@ -78,15 +90,17 @@ function MoviePage() {
           </div>
 
           {/* Reviews */}
-          <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-8">
+          <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-8 border border-border">
             <div className="flex justify-between mb-5">
               <div className="text-subtitle ">Reviews</div>
-              <BadgeComponent children={
-                <div className="flex gap-2.5 text-sm items-center">
-                  <img src="/svg/plus.svg" className="w-6"/>
-                  Add Your Review
-                </div>
-              } />
+              <BadgeComponent
+                children={
+                  <div className="flex gap-2.5 text-sm items-center ">
+                    <img src="/svg/plus.svg" className="w-6" />
+                    Add Your Review
+                  </div>
+                }
+              />
             </div>
             <div className="flex overflow-x-auto space-x-4 ">
               <ReviewComponent />
@@ -97,14 +111,20 @@ function MoviePage() {
         </div>
 
         {/* Wrapper Grid */}
-        <div className=" flex flex-col gap-6 p-2 md:p-10 bg-black10 rounded-[10px]">
+        <div className=" flex flex-col gap-6 p-2 md:p-10 bg-black10 rounded-[10px] border border-border">
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Released Year</div>
+            <div className="text-subtitle flex gap-1">
+              <img src="/svg/calendar.svg" className="w-5 " alt="" />
+              Released Year
+            </div>
             <div>2024</div>
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/language.svg" className="w-5 " alt="" />Language</div>
+            <div className="text-subtitle flex gap-1">
+              <img src="/svg/language.svg" className="w-5 " alt="" />
+              Language
+            </div>
             <div className="flex flex-wrap gap-2.5">
               <BadgeComponent className="text-sm" children="English" />
               <BadgeComponent className="text-sm" children="Arabic" />
@@ -115,7 +135,10 @@ function MoviePage() {
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/star.svg" className="w-5 " alt="" />Rating</div>
+            <div className="text-subtitle flex gap-1">
+              <img src="/svg/star.svg" className="w-5 " alt="" />
+              Rating
+            </div>
             <BadgeComponent
               children={
                 <div>
@@ -126,7 +149,9 @@ function MoviePage() {
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/category.svg" className="w-5 " alt="" /> Genres</div>
+            <div className="text-subtitle flex gap-1">
+              <img src="/svg/category.svg" className="w-5 " alt="" /> Genres
+            </div>
             <div className="flex flex-wrap gap-2.5">
               <BadgeComponent className="text-sm" children="Action" />
               <BadgeComponent className="text-sm" children="Adventure" />
@@ -138,11 +163,15 @@ function MoviePage() {
             <BadgeComponent
               children={
                 <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src="/images/movies.jpeg" alt="" />
-                  <div> 
+                  <img
+                    className="w-12 h-[50px] object-cover rounded-[6px]"
+                    src="/images/movies.jpeg"
+                    alt=""
+                  />
+                  <div>
                     IMDB
                     <div className="text-subtitle">from Egypt</div>
-                    </div>
+                  </div>
                 </div>
               }
             />
@@ -151,13 +180,17 @@ function MoviePage() {
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle">Music</div>
             <BadgeComponent
-               children={
+              children={
                 <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src="/images/movies.jpeg" alt="" />
-                  <div> 
+                  <img
+                    className="w-12 h-[50px] object-cover rounded-[6px]"
+                    src="/images/movies.jpeg"
+                    alt=""
+                  />
+                  <div>
                     IMDB
                     <div className="text-subtitle">from Egypt</div>
-                    </div>
+                  </div>
                 </div>
               }
             />
@@ -165,11 +198,11 @@ function MoviePage() {
         </div>
       </section>
 
-    <FreeTrail />
+     <FreeTrail />
 <FooterComponent className="-mx-2 md:-mx-20 px-2 md:px-20" />
 
     </div>
   );
 }
 
-export default MoviePage;
+export default SeriesPage;

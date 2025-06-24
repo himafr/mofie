@@ -1,6 +1,6 @@
 function ReviewComponent() {
     return (
-        <div className="bg-black06  p-[30px] rounded-xl shadow-md max-w-xl min-w-[300px] md:min-w-[370px]">
+        <div className="bg-black06  p-[30px] rounded-xl shadow-md max-w-xl min-w-[300px] md:min-w-[370px] border border-border">
                 <div className="text-xl font-semibold mb-4">
                   Hema Sallem  – ⭐ 4.5
                 </div>

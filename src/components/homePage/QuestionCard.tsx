@@ -13,7 +13,7 @@ function QuestionCard({id,answer,q}:QuestionTypes) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="flex items-center space-x-4">
-          <span className="bg-[#2f2f2f] text-white font-semibold p-4 rounded-md text-sm">
+          <span className="bg-[#2f2f2f] text-white font-semibold p-4 rounded-md text-sm border border-border">
            {id<10&&"0"}{id.toString()}
           </span>
           <h3 className="text-lg font-medium">
