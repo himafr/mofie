@@ -1,17 +1,14 @@
 import MultiImgCardComponent from "./MultiImgCardComponent"
 
 function ListComponents({top=false}:{top?:boolean}) {
+    if(top){
+        //later
+    }
     return (
         <div className="flex overflow-x-auto space-x-4 mt-10">
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
-            <MultiImgCardComponent top={top} genre="" img="images/img.jpg"/>
+            <MultiImgCardComponent  genre={{"id":28,"name":"Action"}} />
+            <MultiImgCardComponent  genre={{"id":28,"name":"Action"}} />
+            <MultiImgCardComponent  genre={{"id":28,"name":"Action"}} />
         </div>
     )
 }
