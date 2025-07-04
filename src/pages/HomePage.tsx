@@ -1,15 +1,15 @@
 import HeaderComponent from "../components/shared/HeaderComponent";
 import ListDevices from "../components/homePage/ListDevices";
-import ListComponents from "../components/ListComponents";
 import ListPlanComponent from "../components/ListPlanComponent";
 import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
 import PrimaryButton from "../components/shared/PrimaryButton";
-import { useState } from "react";
+import {  useState } from "react";
 import FreeTrail from "../components/shared/FreeTrail";
 import FooterComponent from "../components/shared/FooterComponent";
+import MovieGenreList from "../feature/movies/MovieGenreList";
 
 function HomePage() {
-  const [navOpen, setNavOpen] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState<boolean>(false);    
   return (
     <div className="px-2 md:px-20 text-[14px] md:text-[16px]">
 
@@ -52,7 +52,7 @@ function HomePage() {
           Whether you're looking for a comedy to make you laugh, a drama to make
           you think, or a documentary to learn something new
         </p>
-        <ListComponents />
+        <MovieGenreList />
       </section>
 
       <section className="mt-[10vh]" id="devices">

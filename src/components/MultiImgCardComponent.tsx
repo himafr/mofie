@@ -1,39 +1,25 @@
+import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
+import { imageUrl } from "../services/tmdb";
+import { Genre,  } from "../types/types";
 import PrimaryButton from "./shared/PrimaryButton";
 
-interface DataTypes {
-  img: string;
-  top?:boolean;
-}
-function MultiImgCardComponent({ img ,top}: DataTypes) {
+
+function MultiImgCardComponent({genre}: {genre:Genre}) {
+  const {topRated,isLoading}=useTopRatedMoviesInGenre(genre.id)
+if(isLoading)return <p>loading...</p>
   return (
     <div className="w-[295.4px] p-[30px] bg-[#1A1A1A] min-w-[295px] border border-border rounded-[10px]">
       <div className="grid gap-1.5 grid-cols-2  bg-linear-to-t relative ">
-        <img
+        {topRated.slice(0,4).map(movie=><img
           className="w-[115.2px] h-[123.5px] object-cover"
-          src={img}
+          src={imageUrl+movie.poster_path}
           alt=""
-        />
-        <img
-          className="w-[115.2px] h-[123.5px] object-cover"
-          src={img}
-          alt=""
-        />
-        <img
-          className="w-[115.2px] h-[123.5px] object-cover"
-          src={img}
-          alt=""
-        />
-        <img
-          className="w-[115.2px] h-[123.5px] object-cover"
-          src={img}
-          alt=""
-        />
-
+        />)}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] pointer-events-none"></div>
       </div>
 {top&&<PrimaryButton title="Top 10 in" className="h-8 py-0 items-center" />}
       <div className="flex justify-between relative top-2 items-center">
-        <p className="text-[18px] font-semibold">action</p>
+        <p className="text-[18px] font-semibold">{genre.name}</p>
         <img src="svg/arrow-right.svg" width={30} alt="icon" />
       </div>
     </div>

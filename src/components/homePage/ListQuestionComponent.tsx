@@ -46,7 +46,7 @@ function ListQuestionComponent() {
 
     return (
      <div className="grid  md:grid-flow-col gap-2 xl:grid-cols-2 md:grid-rows-4 lg:grid-cols-2  tv:flex tv:flex-wrap   mt-10">
-         {_questions.map(el=><QuestionCard q={el.q} answer={el.answer} id={el.id}/>)}
+         {_questions.map(el=><QuestionCard q={el.q} answer={el.answer} id={el.id} key={el.id} />)}
 
         </div>
     )

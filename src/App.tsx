@@ -1,6 +1,9 @@
 import { lazy, Suspense } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
 import LoadingPage from "./state/LoadingPage";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 
 const NotFoundPage =lazy(()=> import( "./pages/NotFoundPage"));
@@ -12,7 +15,15 @@ const SupportPage =lazy(()=> import( "./pages/SupportPage"));
 const SubscriptionPage =lazy(()=> import( "./pages/SubscriptionPage"));
 
 function App() {
+    const queryClient=new QueryClient({
+        defaultOptions:{
+            queries:{staleTime:60*1000}
+        }
+    })
     return (
+        <QueryClientProvider client={queryClient} >
+            <ReactQueryDevtools/>
+
         <BrowserRouter>
         <Suspense fallback={<LoadingPage/>} >
         <Routes>
@@ -26,6 +37,32 @@ function App() {
         </Routes>
         </Suspense>
         </BrowserRouter>
+        <Toaster position="top-center" gutter={12}  containerStyle={{margin:"8px"}} 
+toastOptions={{
+  success: {
+    duration: 3000,
+    style: {
+      background: 'var(--color-green-700)',
+      color: '#fff',
+    },
+  },
+  error: {
+    duration: 5000,
+    style: {
+      background: 'var(--color-red-700)',
+      color: '#fff',
+    },
+  },
+  style:{
+    fontSize:"16px",
+    maxWidth:"500px",
+    padding:"16px 24px",
+    backgroundColor:"var(--color-grey-0)",
+    color: 'var(--color-grey-700)',
+}
+}}
+/>
+        </QueryClientProvider>
     )
 }
 
