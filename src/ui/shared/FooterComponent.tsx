@@ -48,40 +48,40 @@ function FooterComponent({ className }: { className?: string }) {
             <li onClick={() => navigate("/#faq")}>FAQ </li>
           </ul>
           <ul>
-            <li> <NavLink to="/movies_shows"> Movies </NavLink> </li>
-            <li onClick={() => navigate("/movies_shows#movies_genres")}>
+            <li> <NavLink to="/movies"> Movies </NavLink> </li>
+            <li onClick={() => navigate("/movies#movies_genres")}>
               Genres
             </li>
-            <li onClick={() => navigate("/movies_shows#movies_popular")}>
+            <li onClick={() => navigate("/movies#movies_popular")}>
               Popular
             </li>
-            <li onClick={() => navigate("/movies_shows#movies_trending")}>
+            <li onClick={() => navigate("/movies#movies_trending")}>
               Trending
             </li>
-            <li onClick={() => navigate("/movies_shows#movies_release")}>
+            <li onClick={() => navigate("/movies#movies_release")}>
               New Release
             </li>
-            <li onClick={() => navigate("/movies_shows#movies_watch")}>
+            <li onClick={() => navigate("/movies#movies_watch")}>
               Must Watch
             </li>
           </ul>
           <ul>
             <li>
-              <NavLink to="/movies_shows"> Shows </NavLink>
+              <NavLink to="/shows"> Shows </NavLink>
             </li>
-            <li onClick={() => navigate("/movies_shows#series_genres")}>
+            <li onClick={() => navigate("/shows#series_genres")}>
               Genres
             </li>
-            <li onClick={() => navigate("/movies_shows#series_popular")}>
+            <li onClick={() => navigate("/shows#series_popular")}>
               Popular
             </li>
-            <li onClick={() => navigate("/movies_shows#series_trending")}>
+            <li onClick={() => navigate("/shows#series_trending")}>
               Trending
             </li>
-            <li onClick={() => navigate("/movies_shows#series_release")}>
+            <li onClick={() => navigate("/shows#series_release")}>
               New Release
             </li>
-            <li onClick={() => navigate("/movies_shows#series_watch")}>
+            <li onClick={() => navigate("/shows#series_watch")}>
               Must Watch
             </li>
           </ul>

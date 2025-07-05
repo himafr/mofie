@@ -1,9 +1,9 @@
 import { useState } from "react";
-import HeaderComponent from "../components/shared/HeaderComponent";
+import HeaderComponent from "../ui/shared/HeaderComponent";
 import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
-import ContactForm from "../components/shared/ContactForm";
-import FreeTrail from "../components/shared/FreeTrail";
-import FooterComponent from "../components/shared/FooterComponent";
+import ContactForm from "../ui/shared/ContactForm";
+import FreeTrail from "../ui/shared/FreeTrail";
+import FooterComponent from "../ui/shared/FooterComponent";
 
 function SupportPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);

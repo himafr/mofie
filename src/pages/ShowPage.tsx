@@ -1,14 +1,14 @@
 import { useState } from "react";
-import BadgeComponent from "../components/shared/BadgeComponent";
-import HeaderComponent from "../components/shared/HeaderComponent";
-import IconBorder from "../components/shared/IconBorder";
-import PrimaryButton from "../components/shared/PrimaryButton";
-import ReviewComponent from "../components/shared/ReviewComponent";
+import BadgeComponent from "../ui/shared/BadgeComponent";
+import HeaderComponent from "../ui/shared/HeaderComponent";
+import IconBorder from "../ui/shared/IconBorder";
+import PrimaryButton from "../ui/shared/PrimaryButton";
+import ReviewComponent from "../ui/shared/ReviewComponent";
 import SeasonComponent from "../components/shows movies/SeasonComponent";
-import FreeTrail from "../components/shared/FreeTrail";
-import FooterComponent from "../components/shared/FooterComponent";
+import FreeTrail from "../ui/shared/FreeTrail";
+import FooterComponent from "../ui/shared/FooterComponent";
 
-function SeriesPage() {
+function ShowPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
 
   return (
@@ -205,4 +205,4 @@ function SeriesPage() {
   );
 }
 
-export default SeriesPage;
+export default ShowPage;

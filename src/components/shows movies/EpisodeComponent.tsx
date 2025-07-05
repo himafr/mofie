@@ -1,4 +1,4 @@
-import BadgeComponent from "../shared/BadgeComponent"
+import BadgeComponent from "../../ui/shared/BadgeComponent"
 
 function EpisodeComponent() {
     return (

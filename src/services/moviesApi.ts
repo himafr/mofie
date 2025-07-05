@@ -1,5 +1,5 @@
 import { GenreListResponse, MovieListResponse } from "../types/types";
-import { moviesGenres } from "./premadeMovieData";
+import { moviesGenres } from "./premadeData";
 import { apiToken, apiUrl } from "./tmdb";
 
 const headers={
@@ -55,8 +55,9 @@ const options = {
     throw error;
   }
 }
-export async function getTopRatedMoviesInGenre(id:number): Promise<MovieListResponse>{
-const url = `${apiUrl}discover/movie?with_genres=${id||28}&sort_by=popularity.desc&language=en-US&page=1`;
+export async function getTopRatedMoviesInGenre(id:number|undefined,page=1): Promise<MovieListResponse>{
+if(!id) throw new Error("Genre ID is required");
+const url = `${apiUrl}discover/movie?with_genres=${id}&sort_by=popularity.desc&language=en-US&page=${page}`;
 const options = {
   method: 'GET',
   headers

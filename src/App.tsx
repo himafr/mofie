@@ -8,16 +8,18 @@ import { Toaster } from "react-hot-toast";
 
 const NotFoundPage =lazy(()=> import( "./pages/NotFoundPage"));
 const HomePage =lazy(()=> import( "./pages/HomePage"));
-const MoviesShowsPage =lazy(()=> import( "./pages/MoviesShowsPage"));
-const MoviePage =lazy(()=> import( "./pages/MoviePage"));
-const SeriesPage =lazy(()=> import( "./pages/SeriesPage"));
 const SupportPage =lazy(()=> import( "./pages/SupportPage"));
 const SubscriptionPage =lazy(()=> import( "./pages/SubscriptionPage"));
+const MoviesPage =lazy(()=> import( "./pages/MoviesPage"));
+const MoviePage =lazy(()=> import( "./pages/MoviePage"));
+const ShowsPage =lazy(()=> import( "./pages/ShowsPage"));
+const ShowPage =lazy(()=> import( "./pages/ShowPage"));
+const ListPage =lazy(()=> import( "./pages/ListPage"));
 
 function App() {
     const queryClient=new QueryClient({
         defaultOptions:{
-            queries:{staleTime:60*1000}
+            queries:{staleTime:5*60*1000}
         }
     })
     return (
@@ -30,9 +32,12 @@ function App() {
             <Route index element={<HomePage />}/>
             <Route path="/support" element={<SupportPage />} />
             <Route path="/subscriptions" element={<SubscriptionPage />}/>
-            <Route path="/movies_shows" element={<MoviesShowsPage />}/>
-            <Route path="/movies_shows/movie/:id" element={<MoviePage />} />
-            <Route path="/movies_shows/series/:id" element={<SeriesPage />} />
+            <Route path="/movies" element={<MoviesPage />}/>
+            <Route path="/movies/:id" element={<ListPage isMovie />} />
+            <Route path="/movies/movie/:id" element={<MoviePage />} />
+            <Route path="/shows" element={<ShowsPage />}/>
+            <Route path="/shows/:id" element={<ListPage isMovie={false} />} />
+            <Route path="/shows/show/:id" element={<ShowPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>

@@ -1,15 +1,15 @@
-import HeaderComponent from "../components/shared/HeaderComponent";
+import HeaderComponent from "../ui/shared/HeaderComponent";
 import ListComponents from "../components/ListComponents";
-import PrimaryButton from "../components/shared/PrimaryButton";
+import PrimaryButton from "../ui/shared/PrimaryButton";
 import { useState } from "react";
-import IconBorder from "../components/shared/IconBorder";
+import IconBorder from "../ui/shared/IconBorder";
 import ListImgCardComponent from "../components/shows movies/ListImgCardComponent";
 import { Category, ShowType } from "../types/types";
-import FreeTrail from "../components/shared/FreeTrail";
+import FreeTrail from "../ui/shared/FreeTrail";
 import { useNavigate } from "react-router";
-import FooterComponent from "../components/shared/FooterComponent";
+import FooterComponent from "../ui/shared/FooterComponent";
 
-function MoviesShowsPage() {
+function ShowsPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const navigate =useNavigate()
 
@@ -62,77 +62,7 @@ function MoviesShowsPage() {
           </section>
         </div>
       </div>
-
-      {/* movies */}
-
-{/* Our Genres */}
-
-      <section className="mt-[15vh]" id="movies_genres">
-        <PrimaryButton title="Movies" className="mb-5"  onClick={()=>{navigate("movie/12")} }/>
-        <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Our Genres</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
-        </div>
-        <ListComponents />
-      </section>
-
-          {/* Popular Top 10 In Genres */}
-      <section className="mt-[10vh]" id="movies_popular">
-        <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Popular Top 10 In Genres</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
-        </div>
-        <ListComponents top={true} />
-      </section>
-
-
-          {/* Trending Now */}
-
-      <section className="mt-[10vh]" id="movies_trending">
-        <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Trending Now</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
-        </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Trending} />
-      </section>
-
-          {/* New Releases */}
-      <section className="mt-[10vh]" id="movies_release">
-        <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">New Releases</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
-        </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Releases} />
-      </section>
-
-          {/* Must - Watch Movies */}
-      <section className="mt-[10vh]" id="movies_watch">
-        <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Must - Watch Movies</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
-        </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Watch} />
-      </section>
+      
 {/* Shows */}
 {/* Our Genres */}
 
@@ -213,4 +143,4 @@ function MoviesShowsPage() {
   );
 }
 
-export default MoviesShowsPage;
+export default ShowsPage;

@@ -11,12 +11,12 @@ export function useMovieGenre(){
     return {genres:data?.genres??[],isLoading,error}
 }
 
-export function useTopRatedMoviesInGenre(id:number){
-    
-    const {data,isLoading,error}=useQuery<MovieListResponse>({
-        queryKey:["topRatedMoviesInGenre",id],
-        queryFn:()=> getTopRatedMoviesInGenre(id),
-        enabled:!!id
+export function useTopRatedMoviesInGenre(id:number|undefined,page:number){
+    const {data,isLoading,error,isError}=useQuery<MovieListResponse>({
+        queryKey:["topRatedMoviesInGenre",id,page],
+        queryFn:()=> getTopRatedMoviesInGenre(id,page),
+        enabled:!!id,   
+        
     })
-    return {topRated:data?.results??[],isLoading,error} 
+    return {topRated:data?.results??[],total_pages:data?.total_pages??1 ,isLoading,error,isError} 
 }

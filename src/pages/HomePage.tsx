@@ -1,11 +1,11 @@
-import HeaderComponent from "../components/shared/HeaderComponent";
+import HeaderComponent from "../ui/shared/HeaderComponent";
 import ListDevices from "../components/homePage/ListDevices";
 import ListPlanComponent from "../components/ListPlanComponent";
 import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
-import PrimaryButton from "../components/shared/PrimaryButton";
+import PrimaryButton from "../ui/shared/PrimaryButton";
 import {  useState } from "react";
-import FreeTrail from "../components/shared/FreeTrail";
-import FooterComponent from "../components/shared/FooterComponent";
+import FreeTrail from "../ui/shared/FreeTrail";
+import FooterComponent from "../ui/shared/FooterComponent";
 import MovieGenreList from "../feature/movies/MovieGenreList";
 
 function HomePage() {
@@ -44,6 +44,7 @@ function HomePage() {
         </div>
       </div>
 
+
       <section className="mt-[30vh]" id="categories">
         <p className="text-2xl md:text-4xl font-bold">
           Explore our wide variety of categories
@@ -57,7 +58,6 @@ function HomePage() {
 
       <section className="mt-[10vh]" id="devices">
         <p className="text-2xl md:text-4xl font-bold">
-          {" "}
           We Provide you streaming experience across various devices.
         </p>
         <p className="text-subtitle mt-2">

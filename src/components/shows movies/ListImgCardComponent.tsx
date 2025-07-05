@@ -1,3 +1,4 @@
+import { testGenre, testMovie } from "../../services/premadeData";
 import { CardType, ShowType } from "../../types/types";
 import ImgCardMovieComponent from "./ImgCardMovieComponent";
 import ImgCardShowComponent from "./ImgCardShowComponent";
@@ -7,33 +8,34 @@ function ListImgCardComponent({ category, type }: CardType) {
     return (
       <div className="flex overflow-x-auto space-x-4 mt-10">
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={category}
-          movie={{ img: "images/img.jpg" }}
+          category={testGenre}
+          movie={testMovie}
         />
+        
       </div>
     );
   } else if (type == ShowType.Show) {

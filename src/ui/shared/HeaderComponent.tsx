@@ -13,7 +13,8 @@ function HeaderComponent({
 
       <ul className="gap-4 hidden md:flex">
         <NavLink to="/">Home </NavLink>
-        <NavLink to="/movies_shows">Movies&Shows </NavLink>
+        <NavLink to="/movies">Movies </NavLink>
+        <NavLink to="/shows">Shows </NavLink>
         <NavLink to="/support">Support </NavLink>
         <NavLink to="/subscriptions">Subscriptions </NavLink>
       </ul>

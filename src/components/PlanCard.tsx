@@ -1,5 +1,5 @@
 import { PlanTypes } from "../types/types";
-import PrimaryButton from "./shared/PrimaryButton";
+import PrimaryButton from "../ui/shared/PrimaryButton";
 
 const PlanCard = ({content,price,time,name}:PlanTypes) => {
   return (

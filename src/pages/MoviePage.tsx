@@ -1,11 +1,11 @@
 import { useState } from "react";
-import PrimaryButton from "../components/shared/PrimaryButton";
-import HeaderComponent from "../components/shared/HeaderComponent";
-import IconBorder from "../components/shared/IconBorder";
-import ReviewComponent from "../components/shared/ReviewComponent";
-import BadgeComponent from "../components/shared/BadgeComponent";
-import FreeTrail from "../components/shared/FreeTrail";
-import FooterComponent from "../components/shared/FooterComponent";
+import PrimaryButton from "../ui/shared/PrimaryButton";
+import HeaderComponent from "../ui/shared/HeaderComponent";
+import IconBorder from "../ui/shared/IconBorder";
+import ReviewComponent from "../ui/shared/ReviewComponent";
+import BadgeComponent from "../ui/shared/BadgeComponent";
+import FreeTrail from "../ui/shared/FreeTrail";
+import FooterComponent from "../ui/shared/FooterComponent";
 
 function MoviePage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);

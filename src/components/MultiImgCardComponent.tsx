@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router";
 import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
 import { imageUrl } from "../services/tmdb";
 import { Genre,  } from "../types/types";
-import PrimaryButton from "./shared/PrimaryButton";
+import PrimaryButton from "../ui/shared/PrimaryButton";
 
 
 function MultiImgCardComponent({genre}: {genre:Genre}) {
-  const {topRated,isLoading}=useTopRatedMoviesInGenre(genre.id)
+  const {topRated,isLoading}=useTopRatedMoviesInGenre(genre.id);
+  const navigate =useNavigate();
 if(isLoading)return <p>loading...</p>
   return (
     <div className="w-[295.4px] p-[30px] bg-[#1A1A1A] min-w-[295px] border border-border rounded-[10px]">
@@ -20,7 +22,7 @@ if(isLoading)return <p>loading...</p>
 {top&&<PrimaryButton title="Top 10 in" className="h-8 py-0 items-center" />}
       <div className="flex justify-between relative top-2 items-center">
         <p className="text-[18px] font-semibold">{genre.name}</p>
-        <img src="svg/arrow-right.svg" width={30} alt="icon" />
+        <img src="svg/arrow-right.svg" width={30} alt="icon" className="cursor-pointer" onClick={()=>navigate(`/movies/${genre.name}`)}/>
       </div>
     </div>
   );

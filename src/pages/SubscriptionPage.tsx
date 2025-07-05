@@ -1,10 +1,10 @@
 import { useState } from "react";
-import HeaderComponent from "../components/shared/HeaderComponent";
+import HeaderComponent from "../ui/shared/HeaderComponent";
 import ListPlanComponent from "../components/ListPlanComponent";
-import FreeTrail from "../components/shared/FreeTrail";
+import FreeTrail from "../ui/shared/FreeTrail";
 import PricingTable from "../components/subscription/PricingTable";
 import PricingTablePhone from "../components/subscription/PricingTablePhone";
-import FooterComponent from "../components/shared/FooterComponent";
+import FooterComponent from "../ui/shared/FooterComponent";
 
 function SubscriptionPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
