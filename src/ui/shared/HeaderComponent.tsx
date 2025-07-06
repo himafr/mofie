@@ -46,7 +46,10 @@ function HeaderComponent({
           </li>
 
           <li>
-            <NavLink to="/movies_shows">Movies&Shows </NavLink>
+            <NavLink to="/movies">Movies </NavLink>
+          </li>
+          <li>
+            <NavLink to="/shows">Shows </NavLink>
           </li>
           <li>
             <NavLink to="/support">Support </NavLink>
