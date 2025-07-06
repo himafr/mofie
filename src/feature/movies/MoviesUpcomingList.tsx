@@ -1,4 +1,4 @@
-import { useMustWatchMovies, useUpcomingMovies } from "./useMovieGenre";
+import {  useUpcomingMovies } from "./useMovieGenre";
 import MovieCard from "../../ui/shared/MovieCard";
 
 

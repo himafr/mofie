@@ -1,9 +1,9 @@
 import { imageUrl } from "../../services/tmdb";
-import { Genre, Movie } from "../../types/types";
+import {  Movie } from "../../types/types";
 
 
 function ImgCardMovieComponent({movie,}:{movie:Movie}) {
-  const {poster_path,release_date,title} = movie;
+  const {poster_path,release_date} = movie;
    return (
     <div className="w-[295.4px] p-[30px] bg-[#1A1A1A] min-w-[295px] rounded-[10px] border border-border">
       <div className="bg-linear-to-t relative ">

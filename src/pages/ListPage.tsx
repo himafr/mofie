@@ -1,7 +1,6 @@
 import {  useNavigate, useParams, useSearchParams } from "react-router"
 import { moviesGenres } from "../services/premadeData";
 import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
-import ImgCardMovieComponent from "../components/shows movies/ImgCardMovieComponent";
 import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import MovieCard from "../ui/shared/MovieCard";

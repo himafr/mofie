@@ -1,4 +1,4 @@
-import { testGenre, testMovie } from "../../services/premadeData";
+import {  testMovie } from "../../services/premadeData";
 import { CardType, ShowType } from "../../types/types";
 import ImgCardMovieComponent from "./ImgCardMovieComponent";
 import ImgCardShowComponent from "./ImgCardShowComponent";
