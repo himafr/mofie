@@ -8,31 +8,30 @@ function ListImgCardComponent({ category, type }: CardType) {
     return (
       <div className="flex overflow-x-auto space-x-4 mt-10">
         <ImgCardMovieComponent
-          category={testGenre}
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         <ImgCardMovieComponent
-          category={testGenre}
+          
           movie={testMovie}
         />
         

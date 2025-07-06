@@ -15,6 +15,7 @@ const MoviePage =lazy(()=> import( "./pages/MoviePage"));
 const ShowsPage =lazy(()=> import( "./pages/ShowsPage"));
 const ShowPage =lazy(()=> import( "./pages/ShowPage"));
 const ListPage =lazy(()=> import( "./pages/ListPage"));
+const ListRatedPage =lazy(()=> import( "./pages/ListRatedPage"));
 
 function App() {
     const queryClient=new QueryClient({
@@ -33,6 +34,7 @@ function App() {
             <Route path="/support" element={<SupportPage />} />
             <Route path="/subscriptions" element={<SubscriptionPage />}/>
             <Route path="/movies" element={<MoviesPage />}/>
+            <Route path="/movies/rated/:id" element={<ListRatedPage isMovie />} />
             <Route path="/movies/:id" element={<ListPage isMovie />} />
             <Route path="/movies/movie/:id" element={<MoviePage />} />
             <Route path="/shows" element={<ShowsPage />}/>

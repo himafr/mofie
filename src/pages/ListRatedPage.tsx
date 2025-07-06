@@ -1,12 +1,11 @@
 import {  useNavigate, useParams, useSearchParams } from "react-router"
 import { moviesGenres } from "../services/premadeData";
-import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
-import ImgCardMovieComponent from "../components/shows movies/ImgCardMovieComponent";
 import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { usePopularMoviesInGenre } from "../feature/movies/useMovieGenre";
 import MovieCard from "../ui/shared/MovieCard";
 
-function ListPage({isMovie}:{isMovie:boolean}) {
+function ListRatedPage({isMovie}:{isMovie:boolean}) {
   const navigate=useNavigate()
   const [searchParam]=useSearchParams();
   const param=useParams();
@@ -17,7 +16,7 @@ function ListPage({isMovie}:{isMovie:boolean}) {
   const [page, setPage] =useState<number>(Number(searchParam.get("page")));
   
   const genre=moviesGenres.genres.find(g=>g.name===param.id);
-  const {topRated,isLoading,total_pages,error,isError}=useTopRatedMoviesInGenre(genre?.id,page)
+  const {popular,isLoading,total_pages,error,isError}=usePopularMoviesInGenre(genre?.id,page);
  
     function handlePageChang(page:number){
         if(!genre) return toast.error("error fetching genre");
@@ -44,7 +43,7 @@ function ListPage({isMovie}:{isMovie:boolean}) {
           you think, or a documentary to learn something new
         </p>
         <div className="flex flex-wrap gap-8 justify-center mt-2.5">
-           {topRated.map(movie=>  <MovieCard
+           {popular.map(movie=>  <MovieCard
           movie={movie}
           key={movie.id}
           />)}
@@ -57,4 +56,4 @@ function ListPage({isMovie}:{isMovie:boolean}) {
     )
 }
 
-export default ListPage
+export default ListRatedPage

@@ -1,17 +1,30 @@
 import HeaderComponent from "../ui/shared/HeaderComponent";
-import ListComponents from "../components/ListComponents";
 import PrimaryButton from "../ui/shared/PrimaryButton";
 import { useState } from "react";
 import IconBorder from "../ui/shared/IconBorder";
-import ListImgCardComponent from "../components/shows movies/ListImgCardComponent";
-import { Category, ShowType } from "../types/types";
 import FreeTrail from "../ui/shared/FreeTrail";
 import { useNavigate } from "react-router";
 import FooterComponent from "../ui/shared/FooterComponent";
+import MovieGenreList from "../feature/movies/MovieGenreList";
+import MoviesPopularList from "../feature/movies/MoviesPopularList";
+import MoviesMustWatchList from "../feature/movies/MoviesMustWatchList";
+import MoviesUpcomingList from "../feature/movies/MoviesUpcomingList";
+import MoviesPlayingNowList from "../feature/movies/MoviesPlayingNowList";
+import { usePlayingNowMovies } from "../feature/movies/useMovieGenre";
+import { backDropUrl } from "../services/tmdb";
 
 function MoviesPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);
-  const navigate =useNavigate()
+  const [overview, setOverview] = useState<number>(
+    Math.floor(Math.random() * 20)
+  );
+  const navigate = useNavigate();
+  const { playingNow, isLoading } = usePlayingNowMovies(1);
+
+  function handleChange(i: number) {
+    if (i + overview > 19 || i + overview < 0) return
+    setOverview((prev) => prev + i);
+  }
 
   return (
     <div className="px-2 md:px-20 text-[14px] md:text-[16px]">
@@ -19,20 +32,21 @@ function MoviesPage() {
 
       <div className="w-full h-screen relative mt-7">
         <img
-          src="images/movies.jpeg"
+          src={
+            isLoading
+              ? "images/movies.jpeg"
+              : backDropUrl + playingNow[overview].backdrop_path
+          }
           className="  w-screen h-full object-cover "
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-dark  to-black/15   px-2 md:px-12 h-full ">
           <section className=" flex flex-col   text-center  h-full justify-end">
             <p className="text-3xl md:text-5xl font-bold mb-5">
-              Avengers : Endgame
+              {playingNow[overview]?.title}
             </p>
             <p className="text-subtitle mt-2 mb-10 hidden md:block">
-              With the help of remaining allies, the Avengers must assemble once
-              more in order to undo Thanos's actions and undo the chaos to the
-              universe, no matter what consequences may be in store, and no
-              matter who they face... Avenge the fallen.
+              {playingNow[overview]?.overview}
             </p>
 
             <div className="flex flex-col  md:flex-row justify-center gap-3 items-center">
@@ -55,9 +69,27 @@ function MoviesPage() {
               </div>
             </div>
             <div className="w-full  justify-between items-end my-5  hidden md:flex">
-              <IconBorder src="svg/left-arrow.svg" />
-              <div>photos</div>
-              <IconBorder src="svg/right-arrow.svg" />
+              <div onClick={() => handleChange(-1)}>
+                <IconBorder src="svg/left-arrow.svg" />
+              </div>
+              <div className="flex gap-1.5">
+                {playingNow.map((_, index) =>
+                  index == overview ? (
+                    <div
+                      className="w-5 h-1.5 bg-primary cursor-pointer"
+                      onClick={() => setOverview(index)}
+                    ></div>
+                  ) : (
+                    <div
+                      className="w-5 h-1.5 bg-gray-500 cursor-pointer"
+                      onClick={() => setOverview(index)}
+                    ></div>
+                  )
+                )}
+              </div>
+              <div onClick={() => handleChange(1)}>
+                <IconBorder src="svg/right-arrow.svg" />
+              </div>
             </div>
           </section>
         </div>
@@ -65,79 +97,62 @@ function MoviesPage() {
 
       {/* movies */}
 
-{/* Our Genres */}
+      {/* Our Genres */}
 
       <section className="mt-[15vh]" id="movies_genres">
-        <PrimaryButton title="Movies" className="mb-5"  onClick={()=>{navigate("movie/12")} }/>
+        <PrimaryButton
+          title="Movies"
+          className="mb-5"
+          onClick={() => {
+            navigate("movie/12");
+          }}
+        />
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Our Genres</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
+          
         </div>
-        <ListComponents />
+        <MovieGenreList />
       </section>
 
-          {/* Popular Top 10 In Genres */}
+      {/* Popular Top 10 In Genres */}
       <section className="mt-[10vh]" id="movies_popular">
         <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Popular Top 10 In Genres</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
+          <p className="text-2xl md:text-4xl font-bold">
+            Popular Top 10 In Genres
+          </p>
         </div>
-        <ListComponents top={true} />
+        <MoviesPopularList />
       </section>
 
+      {/* Playing Now */}
 
-          {/* Trending Now */}
-
-      <section className="mt-[10vh]" id="movies_trending">
+      <section className="mt-[10vh]" id="movies_playing">
         <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">Trending Now</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
+          <p className="text-2xl md:text-4xl font-bold">Playing Now</p>
+         
         </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Trending} />
+        <MoviesPlayingNowList />
       </section>
 
-          {/* New Releases */}
+      {/* Upcoming  movies */}
       <section className="mt-[10vh]" id="movies_release">
         <div className="flex justify-between items-center">
-          <p className="text-2xl md:text-4xl font-bold">New Releases</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
+          <p className="text-2xl md:text-4xl font-bold">Upcoming Movies</p>
+         
         </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Releases} />
+        <MoviesUpcomingList />
       </section>
 
-          {/* Must - Watch Movies */}
+      {/* Must - Watch Movies */}
       <section className="mt-[10vh]" id="movies_watch">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Must - Watch Movies</p>
-          <div className="hidden md:flex justify-between items-end bg-[#0F0F0F] gap-4 p-3 rounded-xl">
-            <IconBorder src="svg/left-arrow.svg" />
-            <div>photos</div>
-            <IconBorder src="svg/right-arrow.svg" />
-          </div>
         </div>
-        <ListImgCardComponent type={ShowType.Movie} category={Category.Watch} />
+        <MoviesMustWatchList />
       </section>
-  <FreeTrail />
+      <FreeTrail />
 
-<FooterComponent className="-mx-2 md:-mx-20 px-2 md:px-20" />
-
-
+      <FooterComponent className="-mx-2 md:-mx-20 px-2 md:px-20" />
     </div>
   );
 }

@@ -55,11 +55,11 @@ function FooterComponent({ className }: { className?: string }) {
             <li onClick={() => navigate("/movies#movies_popular")}>
               Popular
             </li>
-            <li onClick={() => navigate("/movies#movies_trending")}>
-              Trending
+            <li onClick={() => navigate("/movies#movies_playing")}>
+              Playing Now
             </li>
             <li onClick={() => navigate("/movies#movies_release")}>
-              New Release
+              Upcoming movies
             </li>
             <li onClick={() => navigate("/movies#movies_watch")}>
               Must Watch

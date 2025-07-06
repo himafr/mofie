@@ -1,14 +1,14 @@
-import TopRatedInGenre from "./TopRatedInGenre"
+import TopPopularInGenre from "./TopPopularInGenre"
 import { useMovieGenre } from "./useMovieGenre"
 
-function MovieGenreList() {
+function MoviesPopularList() {
     const {isLoading,genres}=useMovieGenre()
     if(isLoading) return <span>loading......</span>
   return (
         <div className="flex overflow-x-auto space-x-4 mt-10">
-           {genres.map(genre=><TopRatedInGenre  key={genre.id}  genre={genre} />)}
+           {genres.map(genre=><TopPopularInGenre key={genre.id} genre={genre} />)}
         </div>
     )
 }
 
-export default MovieGenreList
+export default MoviesPopularList
