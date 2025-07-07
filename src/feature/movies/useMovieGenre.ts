@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMovieById, getMovieCredits, getMovieReviews, getMoviesGenres, getMustWatchMovies, getPlayingNowMovies, getPopularMoviesInGenre, getTopRatedMoviesInGenre, getUpcomingMovies } from "../../services/moviesApi";
 import { GenreListResponse, MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../../types/types";
-import toast from "react-hot-toast";
 
 export function useMovieGenre(){
 

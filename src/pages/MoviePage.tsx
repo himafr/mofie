@@ -10,7 +10,7 @@ import { useParams } from "react-router";
 import { useMovieById, useMovieCredits, useMovieReviews } from "../feature/movies/useMovieGenre";
 import { backDropUrl, imageUrl } from "../services/tmdb";
 import clsx from "clsx";
-import BoxRate from "../ui/boxRate";
+import BoxRate from "../ui/BoxRate";
 
 
 function MoviePage() {

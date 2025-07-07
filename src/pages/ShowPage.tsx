@@ -3,7 +3,6 @@ import BadgeComponent from "../ui/shared/BadgeComponent";
 import HeaderComponent from "../ui/shared/HeaderComponent";
 import IconBorder from "../ui/shared/IconBorder";
 import PrimaryButton from "../ui/shared/PrimaryButton";
-import ReviewComponent from "../ui/shared/ReviewComponent";
 import SeasonComponent from "../components/shows movies/SeasonComponent";
 import FreeTrail from "../ui/shared/FreeTrail";
 import FooterComponent from "../ui/shared/FooterComponent";
@@ -103,9 +102,9 @@ function ShowPage() {
               />
             </div>
             <div className="flex overflow-x-auto space-x-4 ">
+              {/* <ReviewComponent />
               <ReviewComponent />
-              <ReviewComponent />
-              <ReviewComponent />
+              <ReviewComponent /> */}
             </div>
           </div>
         </div>

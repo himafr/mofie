@@ -1,6 +1,6 @@
 import { imageUrl } from "../../services/tmdb"
 import {  MovieReview } from "../../types/types"
-import BoxRate from "../boxRate"
+import BoxRate from "../BoxRate"
 
 function ReviewComponent({review}:{review:MovieReview}) {
   const {author_details,content,updated_at,created_at ,url}=review
