@@ -4,6 +4,7 @@ import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { usePopularMoviesInGenre } from "../feature/movies/useMovieGenre";
 import MovieCard from "../ui/shared/MovieCard";
+import Pagination from "../ui/pagination";
 
 function ListRatedPage({isMovie}:{isMovie:boolean}) {
   const navigate=useNavigate()
@@ -23,7 +24,7 @@ function ListRatedPage({isMovie}:{isMovie:boolean}) {
         if(page<1||page>=total_pages||page>500)return toast.error("page cant be over 500 or less than 1")
         searchParam.set("page",String(page));
         setPage(page);
-        navigate(`/${isMovie?"movies":"shows"}/${genre.name}?${searchParam.toString()}`)
+        navigate(`/${isMovie?"movies":"shows"}/rated/${genre.name}?${searchParam.toString()}`)
     }
     useEffect(
       ()=>{
@@ -48,10 +49,8 @@ function ListRatedPage({isMovie}:{isMovie:boolean}) {
           key={movie.id}
           />)}
           </div>
-          <button disabled={page==total_pages||page>500} onClick={()=>handlePageChang?.(page+1)} >more</button>
-          <input  type="number" onBlur={(e)=>handlePageChang(Number(e.target.value))} />
-          <button disabled={page==1} onClick={()=>handlePageChang?.(page-1)} >prev</button>
-            
+       
+            <Pagination currentPage={page} totalPages={total_pages<500?total_pages:500} onPageChange={handlePageChang}  />
           </section>
     )
 }

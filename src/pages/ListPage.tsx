@@ -4,6 +4,7 @@ import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
 import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import MovieCard from "../ui/shared/MovieCard";
+import Pagination from "../ui/pagination";
 
 function ListPage({isMovie}:{isMovie:boolean}) {
   const navigate=useNavigate()
@@ -51,6 +52,8 @@ function ListPage({isMovie}:{isMovie:boolean}) {
           <button disabled={page==total_pages||page>500} onClick={()=>handlePageChang?.(page+1)} >more</button>
           <input  type="number" onBlur={(e)=>handlePageChang(Number(e.target.value))} />
           <button disabled={page==1} onClick={()=>handlePageChang?.(page-1)} >prev</button>
+          
+            <Pagination currentPage={page} totalPages={total_pages<500?total_pages:500} onPageChange={handlePageChang}  />
             
           </section>
     )

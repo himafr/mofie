@@ -6,9 +6,26 @@ import ReviewComponent from "../ui/shared/ReviewComponent";
 import BadgeComponent from "../ui/shared/BadgeComponent";
 import FreeTrail from "../ui/shared/FreeTrail";
 import FooterComponent from "../ui/shared/FooterComponent";
+import { useParams } from "react-router";
+import { useMovieById, useMovieCredits, useMovieReviews } from "../feature/movies/useMovieGenre";
+import { backDropUrl, imageUrl } from "../services/tmdb";
+import clsx from "clsx";
+import BoxRate from "../ui/boxRate";
+
 
 function MoviePage() {
+  const {id}=useParams<{id:string}>()
   const [navOpen, setNavOpen] = useState<boolean>(false);
+  const {movie,isError:movieIsError,isLoading:movieIsLoading,error:movieError}=useMovieById(id)
+  const {cast,crew,isError:creditsIsError,isLoading:creditsLoading}=useMovieCredits(id);
+  const {reviews}=useMovieReviews(id)
+const isLoading=movieIsLoading||creditsLoading;
+const isError=movieIsError||creditsIsError;
+
+  if(isError||!movie)return<span>Error :{movieError?.message}</span>
+  if(!crew||!cast)return<span>Error :{movieError?.message}</span>
+  if(isLoading)return <span>Loading...</span>
+  const {backdrop_path,overview,original_title,release_date,spoken_languages,genres,vote_average}=movie
 
   return (
     <div className="px-2 md:px-20 text-[14px] md:text-[16px]">
@@ -16,21 +33,18 @@ function MoviePage() {
 
       <div className="w-full h-screen relative mt-7">
         <img
-          src="/images/movies1.jpg"
+          src={backDropUrl+backdrop_path}
           className="  w-screen h-full object-cover "
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-dark  to-black/15   px-2 md:px-12 h-full ">
           <section className=" flex flex-col   text-center  h-full justify-end">
             <p className="text-3xl md:text-5xl font-bold mb-5">
-              Avengers : Endgame
+             {original_title}
             </p>
             <p className="text-subtitle mt-2 mb-10 hidden md:block">
-              With the help of remaining allies, the Avengers must assemble once
-              more in order to undo Thanos's actions and undo the chaos to the
-              universe, no matter what consequences may be in store, and no
-              matter who they face... Avenge the fallen.
-            </p>
+              {overview}
+               </p>
 
             <div className="flex flex-col  md:flex-row justify-center gap-3 items-center">
               <PrimaryButton
@@ -59,19 +73,18 @@ function MoviePage() {
         <div className="md:w-[70%]">
           {/* description */}
           <div className="p-10 bg-black10 rounded-[10px] mb-5">
-            <div className="text-subtitle mb-5">description</div>A fiery young
-            man clashes with an unflinching forest officer in a south Indian
-            village where spirituality, fate and folklore rule the lands.
+            <div className="text-subtitle mb-5">description</div>{overview}
           </div>
 
           {/* Cast */}
           <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-5">
             <div className="text-subtitle mb-5">Cast</div>
             <div className="flex overflow-x-auto space-x-4">
-              {[...Array(15)].map((_, idx) => (
-                <div
-                  key={idx}
-                  className="aspect-square bg-gray-700 rounded-lg animate-pulse min-w-20"
+              {cast.map(actor => ( <img
+              title={actor.name}
+                  key={actor.cast_id}
+                  src={imageUrl+actor.profile_path}
+                  className={clsx("aspect-square bg-gray-700 rounded-lg  min-w-20",isLoading&&"animate-pulse")}
                 />
               ))}
             </div>
@@ -81,17 +94,17 @@ function MoviePage() {
           <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-8">
             <div className="flex justify-between mb-5">
               <div className="text-subtitle ">Reviews</div>
-              <BadgeComponent children={
+              {/* <BadgeComponent children={
                 <div className="flex gap-2.5 text-sm items-center">
                   <img src="/svg/plus.svg" className="w-6"/>
                   Add Your Review
                 </div>
-              } />
+              } /> */}
             </div>
             <div className="flex overflow-x-auto space-x-4 ">
-              <ReviewComponent />
-              <ReviewComponent />
-              <ReviewComponent />
+{reviews.map(review=><ReviewComponent review={review} key={review.id} />
+ )}
+             
             </div>
           </div>
         </div>
@@ -100,17 +113,14 @@ function MoviePage() {
         <div className=" flex flex-col gap-6 p-2 md:p-10 bg-black10 rounded-[10px]">
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Released Year</div>
-            <div>2024</div>
+            <div>{new Date(release_date).getFullYear()}</div>
           </div>
 
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle flex gap-1"><img src="/svg/language.svg" className="w-5 " alt="" />Language</div>
             <div className="flex flex-wrap gap-2.5">
-              <BadgeComponent className="text-sm" children="English" />
-              <BadgeComponent className="text-sm" children="Arabic" />
-              <BadgeComponent className="text-sm" children="Telegu" />
-              <BadgeComponent className="text-sm" children="Hindi" />
-              <BadgeComponent className="text-sm" children="Kannada" />
+              {spoken_languages.map(language=><BadgeComponent key={language.english_name} className="text-sm" children={language.english_name} />  )}
+             
             </div>
           </div>
 
@@ -118,8 +128,9 @@ function MoviePage() {
             <div className="text-subtitle flex gap-1"><img src="/svg/star.svg" className="w-5 " alt="" />Rating</div>
             <BadgeComponent
               children={
-                <div>
-                  <div> IMDB</div>
+                <div className="flex flex-col gap-2.5">
+                 <BoxRate stars={vote_average} h={18} />
+                  Vote Average : {vote_average.toFixed(1)}
                 </div>
               }
             />
@@ -128,39 +139,42 @@ function MoviePage() {
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle flex gap-1"><img src="/svg/category.svg" className="w-5 " alt="" /> Genres</div>
             <div className="flex flex-wrap gap-2.5">
-              <BadgeComponent className="text-sm" children="Action" />
-              <BadgeComponent className="text-sm" children="Adventure" />
+              {genres.map(genre=><BadgeComponent className="text-sm " key={genre.id} children={genre.name}  />)}
             </div>
           </div>
 
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle">Director</div>
-            <BadgeComponent
-              children={
-                <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src="/images/movies.jpeg" alt="" />
+            {crew.map(person=>person.job=="Director"&& <BadgeComponent
+            key={person.id}
+            children={
+              <div className="flex gap-2.5">
+                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={imageUrl+person.profile_path} alt={person.name} />
                   <div> 
-                    IMDB
-                    <div className="text-subtitle">from Egypt</div>
+                    {person.name}
+                    <div className="text-subtitle">Department {person.department}</div>
                     </div>
                 </div>
               }
-            />
+              />
+            )}
           </div>
 
           <div className="flex flex-col gap-2.5">
             <div className="text-subtitle">Music</div>
-            <BadgeComponent
-               children={
-                <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src="/images/movies.jpeg" alt="" />
+            {crew.map(person=>person.job=='Original Music Composer'&&<BadgeComponent
+            key={person.id}
+            children={
+              <div className="flex gap-2.5">
+                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={imageUrl+person.profile_path} alt={person.name}/>
                   <div> 
-                    IMDB
-                    <div className="text-subtitle">from Egypt</div>
+                    {person.name}
+                    <div className="text-subtitle">Department {person.department}</div>
                     </div>
                 </div>
               }
-            />
+              />
+            )}
           </div>
         </div>
       </section>

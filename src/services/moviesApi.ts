@@ -1,4 +1,4 @@
-import { GenreListResponse, MovieListResponse } from "../types/types";
+import { GenreListResponse, MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/types";
 import { moviesGenres } from "./premadeData";
 import { apiToken, apiUrl } from "./tmdb";
 
@@ -149,7 +149,80 @@ export async function getPlayingNowMovies(
     console.log(data);
     return data;
   } catch (error) {
-    console.error("Failed to fetch movie genres:", error);
+    console.error("Failed to fetch movies:", error);
+    throw error;
+  }
+}
+
+export async function getMovieById(
+  id:string|undefined
+): Promise<MovieDetails> {
+   if(id==undefined)throw new Error("there is no movie selected")
+  const url = `${apiUrl}movie/${id}?language=en-US`;
+  const options = {
+    method: "GET",
+    headers,
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: MovieDetails = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch movie details:", error);
+    throw error;
+  }
+}
+export async function getMovieCredits(
+  id:string|undefined
+): Promise<MovieCreditsResponse> {
+   if(id==undefined)throw new Error("there is no movie selected")
+  const url = `${apiUrl}/movie/${id}/credits`;
+  const options = {
+    method: "GET",
+    headers,
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: MovieCreditsResponse = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch movie credits:", error);
+    throw error;
+  }
+}
+export async function getMovieReviews(
+  id:string|undefined
+): Promise<MovieReviewsResponse> {
+   if(id==undefined)throw new Error("there is no movie selected")
+  const url = `${apiUrl}/movie/${id}/reviews?page=1`;
+  const options = {
+    method: "GET",
+    headers,
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: MovieReviewsResponse = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch movie credits:", error);
     throw error;
   }
 }

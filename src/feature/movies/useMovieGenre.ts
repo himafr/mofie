@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMoviesGenres, getMustWatchMovies, getPlayingNowMovies, getPopularMoviesInGenre, getTopRatedMoviesInGenre, getUpcomingMovies } from "../../services/moviesApi";
-import { GenreListResponse, MovieListResponse } from "../../types/types";
+import { getMovieById, getMovieCredits, getMovieReviews, getMoviesGenres, getMustWatchMovies, getPlayingNowMovies, getPopularMoviesInGenre, getTopRatedMoviesInGenre, getUpcomingMovies } from "../../services/moviesApi";
+import { GenreListResponse, MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../../types/types";
+import toast from "react-hot-toast";
 
 export function useMovieGenre(){
 
@@ -52,4 +53,34 @@ export function usePlayingNowMovies(page:number){
         enabled:!!page,   
     })
     return {playingNow:data?.results??[],total_pages:data?.total_pages??1 ,isLoading,error,isError} 
+}
+export function useMovieById(id:string|undefined){
+   
+    const {data,isLoading,error,isError}=useQuery<MovieDetails>({
+        queryKey:["movieById",id],
+        queryFn:()=> getMovieById(id),
+        enabled:!!id,   
+    })
+    
+    return {movie:data,isLoading,error,isError} 
+}
+export function useMovieCredits(id:string|undefined){
+   
+    const {data,isLoading,error,isError}=useQuery<MovieCreditsResponse>({
+        queryKey:["movieCredits",id],
+        queryFn:()=> getMovieCredits(id),
+        enabled:!!id,   
+    })
+    
+    return {cast:data?.cast,crew:data?.crew,isLoading,error,isError} 
+}
+export function useMovieReviews(id:string|undefined){
+   
+    const {data,isLoading,error,isError}=useQuery<MovieReviewsResponse>({
+        queryKey:["movieReviews",id],
+        queryFn:()=> getMovieReviews(id),
+        enabled:!!id,   
+    })
+    
+    return {reviews:data?.results||[],isLoading,error,isError} 
 }
