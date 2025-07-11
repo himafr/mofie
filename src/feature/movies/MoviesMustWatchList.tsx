@@ -8,9 +8,13 @@ if(isLoading)return <p>loading...</p>
 
 return <div className="flex overflow-x-auto space-x-4 mt-10">
   {mustWatch.map(movie=><MovieCard
-        type="watch"
+    className="min-w-[295px]"
+        key={movie.id}
           movie={movie}
-        /> )}
+        >
+          <MovieCard.Popularity/>
+          <MovieCard.Rated/>
+        </MovieCard> )}
       </div>   
 }
 

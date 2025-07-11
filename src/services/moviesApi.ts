@@ -1,4 +1,5 @@
-import { GenreListResponse, MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/types";
+import {  MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/moviesTypes";
+import { GenreListResponse } from "../types/types";
 import { moviesGenres } from "./premadeData";
 import { apiToken, apiUrl } from "./tmdb";
 

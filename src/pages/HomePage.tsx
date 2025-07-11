@@ -7,9 +7,11 @@ import {  useState } from "react";
 import FreeTrail from "../ui/shared/FreeTrail";
 import FooterComponent from "../ui/shared/FooterComponent";
 import MovieGenreList from "../feature/movies/MovieGenreList";
+import { useNavigate } from "react-router";
 
 function HomePage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);    
+  const navigate=useNavigate()
   return (
     <div className="px-2 md:px-20 text-[14px] md:text-[16px]">
 
@@ -39,7 +41,7 @@ function HomePage() {
         <p className="text-subtitle mt-2 mb-10 hidden md:block">
           Mofie is the best streaming experience for watching your favorite movies and shows on demand, anytime, anywhere. With Mofie, you can enjoy a wide variety of content, including the latest blockbusters, classic movies, popular TV shows, and more. You can also create your own watchlists, so you can easily find the content you want to watch.
         </p>
-<PrimaryButton className="items-center  " icon={<img  className="my-3 " width={24} src="svg/play.svg" alt="sh" />} title="Start Watching Now" />
+<PrimaryButton className="items-center " onClick={()=>navigate("/movies")} icon={<img  className="my-3 " width={24} src="svg/play.svg" alt="sh" />} title="Start Watching Now" />
       </section>
         </div>
       </div>

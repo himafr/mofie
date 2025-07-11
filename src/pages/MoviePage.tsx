@@ -6,7 +6,7 @@ import ReviewComponent from "../ui/shared/ReviewComponent";
 import BadgeComponent from "../ui/shared/BadgeComponent";
 import FreeTrail from "../ui/shared/FreeTrail";
 import FooterComponent from "../ui/shared/FooterComponent";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useMovieById, useMovieCredits, useMovieReviews } from "../feature/movies/useMovieGenre";
 import { backDropUrl, imageUrl } from "../services/tmdb";
 import clsx from "clsx";
@@ -14,6 +14,7 @@ import BoxRate from "../ui/BoxRate";
 
 
 function MoviePage() {
+  const navigate=useNavigate()
   const {id}=useParams<{id:string}>()
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const {movie,isError:movieIsError,isLoading:movieIsLoading,error:movieError}=useMovieById(id)
@@ -80,11 +81,14 @@ const isError=movieIsError||creditsIsError;
           <div className="p-2 md:p-10 bg-black10 rounded-[10px] mb-5">
             <div className="text-subtitle mb-5">Cast</div>
             <div className="flex overflow-x-auto space-x-4">
-              {cast.map(actor => ( <img
+              {cast.map(actor => ( <img 
+              
+                    onClick={()=>navigate(`/person/${actor.id}`)}
+
               title={actor.name}
                   key={actor.cast_id}
                   src={imageUrl+actor.profile_path}
-                  className={clsx("aspect-square bg-gray-700 rounded-lg  min-w-20",isLoading&&"animate-pulse")}
+                  className={clsx("aspect-square bg-gray-700 rounded-lg  min-w-20 cursor-pointer",isLoading&&"animate-pulse")}
                 />
               ))}
             </div>
@@ -149,7 +153,9 @@ const isError=movieIsError||creditsIsError;
             key={person.id}
             children={
               <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={imageUrl+person.profile_path} alt={person.name} />
+                    <img className="w-12 h-[50px] object-cover rounded-[6px] cursor-pointer" 
+                    onClick={()=>navigate(`/person/${person.id}`)}
+                    src={imageUrl+person.profile_path} alt={person.name} />
                   <div> 
                     {person.name}
                     <div className="text-subtitle">Department {person.department}</div>
@@ -166,7 +172,9 @@ const isError=movieIsError||creditsIsError;
             key={person.id}
             children={
               <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={imageUrl+person.profile_path} alt={person.name}/>
+                    <img className="w-12 h-[50px] object-cover rounded-[6px] cursor-pointer" 
+                    onClick={()=>navigate(`/person/${person.id}`)}
+                    src={imageUrl+person.profile_path} alt={person.name}/>
                   <div> 
                     {person.name}
                     <div className="text-subtitle">Department {person.department}</div>

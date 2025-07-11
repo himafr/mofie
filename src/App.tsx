@@ -4,6 +4,7 @@ import LoadingPage from "./state/LoadingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import ActorPage from "./pages/ActorPage";
 
 
 const NotFoundPage =lazy(()=> import( "./pages/NotFoundPage"));
@@ -40,6 +41,7 @@ function App() {
             <Route path="/shows" element={<ShowsPage />}/>
             <Route path="/shows/:id" element={<ListPage isMovie={false} />} />
             <Route path="/shows/show/:id" element={<ShowPage />} />
+            <Route path="/person/:id" element={<ActorPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>

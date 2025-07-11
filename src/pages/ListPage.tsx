@@ -32,6 +32,7 @@ function ListPage({isMovie}:{isMovie:boolean}) {
         if(isError)toast.error(`Error ${error?.message}`)
       }
       ,[isError,error])
+    
     if(!genre) return <span>Genre not found</span>
     if(isLoading) return <span>Loading...</span>
     if(error) return<span>{error.name}</span>;
@@ -44,16 +45,15 @@ function ListPage({isMovie}:{isMovie:boolean}) {
           Whether you're looking for a comedy to make you laugh, a drama to make
           you think, or a documentary to learn something new
         </p>
-        <div className="flex flex-wrap gap-8 justify-center mt-2.5">
+        <div className="flex flex-wrap md:gap-8 gap-1.5 justify-center mt-2.5">
            {topRated.map(movie=>  <MovieCard
           movie={movie}
           key={movie.id}
-          />)}
+          >
+            <MovieCard.Title/>
+            {window.innerWidth>=480&&<MovieCard.Vote/>}
+          </MovieCard>)}
           </div>
-          <button disabled={page==total_pages||page>500} onClick={()=>handlePageChang?.(page+1)} >more</button>
-          <input  type="number" onBlur={(e)=>handlePageChang(Number(e.target.value))} />
-          <button disabled={page==1} onClick={()=>handlePageChang?.(page-1)} >prev</button>
-          
             <Pagination currentPage={page} totalPages={total_pages<500?total_pages:500} onPageChange={handlePageChang}  />
             
           </section>

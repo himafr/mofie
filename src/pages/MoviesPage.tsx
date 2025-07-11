@@ -22,7 +22,7 @@ function MoviesPage() {
   const { playingNow, isLoading } = usePlayingNowMovies(1);
 
   function handleChange(i: number) {
-    if (i + overview > 19 || i + overview < 0) return
+    if (i + overview > 19 || i + overview < 0) return;
     setOverview((prev) => prev + i);
   }
 
@@ -76,11 +76,13 @@ function MoviesPage() {
                 {playingNow.map((_, index) =>
                   index == overview ? (
                     <div
+                      key={index}
                       className="w-5 h-1.5 bg-primary cursor-pointer"
                       onClick={() => setOverview(index)}
                     ></div>
                   ) : (
                     <div
+                      key={index}
                       className="w-5 h-1.5 bg-gray-500 cursor-pointer"
                       onClick={() => setOverview(index)}
                     ></div>
@@ -109,7 +111,6 @@ function MoviesPage() {
         />
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Our Genres</p>
-          
         </div>
         <MovieGenreList />
       </section>
@@ -129,7 +130,6 @@ function MoviesPage() {
       <section className="mt-[10vh]" id="movies_playing">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Playing Now</p>
-         
         </div>
         <MoviesPlayingNowList />
       </section>
@@ -138,7 +138,6 @@ function MoviesPage() {
       <section className="mt-[10vh]" id="movies_release">
         <div className="flex justify-between items-center">
           <p className="text-2xl md:text-4xl font-bold">Upcoming Movies</p>
-         
         </div>
         <MoviesUpcomingList />
       </section>

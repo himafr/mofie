@@ -1,4 +1,5 @@
-import { Genre, GenreListResponse, Movie } from "../types/types";
+import { Movie } from "../types/moviesTypes";
+import { Genre, GenreListResponse } from "../types/types";
 
 export const moviesGenres: GenreListResponse = {
   genres: [

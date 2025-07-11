@@ -1,5 +1,5 @@
 import { imageUrl } from "../../services/tmdb"
-import {  MovieReview } from "../../types/types"
+import {  MovieReview } from "../../types/moviesTypes"
 import BoxRate from "../BoxRate"
 
 function ReviewComponent({review}:{review:MovieReview}) {

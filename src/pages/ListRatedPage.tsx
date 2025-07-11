@@ -43,11 +43,14 @@ function ListRatedPage({isMovie}:{isMovie:boolean}) {
           Whether you're looking for a comedy to make you laugh, a drama to make
           you think, or a documentary to learn something new
         </p>
-        <div className="flex flex-wrap gap-8 justify-center mt-2.5">
+        <div className="flex flex-wrap md:gap-8 gap-1.5 justify-center mt-2.5">
            {popular.map(movie=>  <MovieCard
           movie={movie}
           key={movie.id}
-          />)}
+          >
+          <MovieCard.Title/>
+                     {window.innerWidth>=480&&<MovieCard.Rated/>}
+                   </MovieCard>)}
           </div>
        
             <Pagination currentPage={page} totalPages={total_pages<500?total_pages:500} onPageChange={handlePageChang}  />
