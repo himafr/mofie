@@ -18,7 +18,7 @@ if(isLoading)return <CardsLoading/>;
       <div className="grid gap-1.5 grid-cols-2  bg-linear-to-t relative ">
         {topRated.slice(0,4).map(movie=><img
         key={movie.id}
-          className="w-[115.2px] h-[123.5px] object-cover"
+          className="w-[115.2px] h-[123.5px] object-cover cursor-pointer"
           src={imageUrl+movie.poster_path}
           onClick={()=>navigate(`/movies/movie/${movie.id}`)}
           alt={movie.title}
