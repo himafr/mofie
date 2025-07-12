@@ -1,4 +1,4 @@
-import {  MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/moviesTypes";
+import {   MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/moviesTypes";
 import { GenreListResponse } from "../types/types";
 import { moviesGenres } from "./premadeData";
 import { apiToken, apiUrl } from "./tmdb";
@@ -220,6 +220,30 @@ export async function getMovieReviews(
     }
 
     const data: MovieReviewsResponse = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch movie credits:", error);
+    throw error;
+  }
+}
+export async function getMovieBySearch(
+  query:string
+): Promise<MovieListResponse> {
+  if(query.length<=3) return {page:0,results:[],total_pages:0,total_results:0}
+  const url = `${apiUrl}search/movie?query=${encodeURIComponent(query)}`;
+  const options = {
+    method: "GET",
+    headers,
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: MovieListResponse = await response.json();
     console.log(data);
     return data;
   } catch (error) {

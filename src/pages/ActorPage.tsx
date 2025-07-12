@@ -2,12 +2,13 @@ import BadgeComponent from "../ui/shared/BadgeComponent"
 import { usePersonById } from "../feature/people/usePeople"
 import { useParams } from "react-router"
 import { imageUrl } from "../services/tmdb"
+import LoadingPage from "../ui/state/LoadingPage"
 
 function ActorPage() {
   const {id}=useParams<{id:string}>()
   const {error,isLoading,person}=usePersonById(id)
-  if(isLoading)return<span>Loading...</span>
-  if(error||!person)return<span>error</span>
+  if(isLoading)return<LoadingPage/>
+  if(error||!person)return<span>error {error?.message}</span>
   const {also_known_as,biography,birthday,deathday,gender,name,place_of_birth,homepage,known_for_department,popularity,profile_path}=person
     return (
     <div className="items-center h-auto md:gap-5 gap-24 lg:h-screen mx-auto my-32 lg:my-0 grid md:grid-cols-2 ">

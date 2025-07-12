@@ -3,6 +3,7 @@ import { Genre } from "../../types/types";
 import { imageUrl } from "../../services/tmdb";
 import PrimaryButton from "../../ui/shared/PrimaryButton";
 import { usePopularMoviesInGenre } from "./useMovieGenre";
+import CardsLoading from "../../ui/state/CardsLoading";
 
 
 function TopPopularInGenre({genre}:{genre:Genre}) {
@@ -11,7 +12,7 @@ function TopPopularInGenre({genre}:{genre:Genre}) {
   function handleNavigate(){
    navigate(`/movies/rated/${genre.name}`)
   }
-if(isLoading)return <p>loading...</p>
+if(isLoading)return <CardsLoading />
   return (
     <div className="w-[295.4px] p-[30px] bg-[#1A1A1A] min-w-[295px] border border-border rounded-[10px]">
       <div className="grid gap-1.5 grid-cols-2  bg-linear-to-t relative " >
@@ -19,7 +20,9 @@ if(isLoading)return <p>loading...</p>
         key={movie.id}
           className="w-[115.2px] h-[123.5px] object-cover cursor-pointer"
           src={imageUrl+movie.poster_path}
-          alt=""
+          onClick={()=>navigate(`/movies/movie/${movie.id}`)}
+
+          alt={movie.title}
         />)}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] pointer-events-none"></div>
       </div>

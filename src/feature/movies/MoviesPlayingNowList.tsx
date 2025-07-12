@@ -1,9 +1,10 @@
 import { usePlayingNowMovies } from "./useMovieGenre";
 import MovieCard from "../../ui/shared/MovieCard";
+import CardLoading from "../../ui/state/CardLoading";
 
 function MoviesPlayingNowList() {
   const { playingNow, isLoading } = usePlayingNowMovies(1);
-  if (isLoading) return <p>loading...</p>;
+  if (isLoading) return <CardLoading />;
 
   return (
     <div className="flex overflow-x-auto space-x-4 mt-10">

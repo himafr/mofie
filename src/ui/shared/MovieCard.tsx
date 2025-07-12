@@ -68,7 +68,6 @@ function Rated() {
       <div className="text-subtitle text-xs">
        <BoxRate stars={vote_average}/>
       </div>
-      <img src="/svg/vote.svg" width={20} />
     </div>
   );
 }

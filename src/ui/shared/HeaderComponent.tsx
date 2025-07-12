@@ -1,4 +1,6 @@
 import { NavLink } from "react-router";
+import Modal from "./Modal";
+import Search from "./Search";
 
 function HeaderComponent({
   openNav,
@@ -19,7 +21,14 @@ function HeaderComponent({
         <NavLink to="/subscriptions">Subscriptions </NavLink>
       </ul>
       <div className="hidden md:flex gap-4 ">
-        <img src="/svg/search.svg" alt="" />
+        <Modal>
+        <Modal.Open opens="search">
+        <img src="/svg/search.svg" className="cursor-pointer" alt="" />
+        </Modal.Open>
+          <Modal.Window name="search">
+            <Search />
+        </Modal.Window>
+        </Modal>
         <img src="/svg/notification.svg" alt="" />
       </div>
       <img
