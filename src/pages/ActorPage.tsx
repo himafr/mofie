@@ -1,75 +1,95 @@
-import BoxRate from "../ui/BoxRate"
 import BadgeComponent from "../ui/shared/BadgeComponent"
+import { usePersonById } from "../feature/people/usePeople"
+import { useParams } from "react-router"
+import { imageUrl } from "../services/tmdb"
 
 function ActorPage() {
+  const {id}=useParams<{id:string}>()
+  const {error,isLoading,person}=usePersonById(id)
+  if(isLoading)return<span>Loading...</span>
+  if(error||!person)return<span>error</span>
+  const {also_known_as,biography,birthday,deathday,gender,name,place_of_birth,homepage,known_for_department,popularity,profile_path}=person
     return (
-        <div>
-        <div className=" flex flex-col gap-6 p-2 md:p-10 bg-black10 rounded-[10px]">
+    <div className="items-center h-auto md:gap-5 gap-24 lg:h-screen mx-auto my-32 lg:my-0 grid md:grid-cols-2 ">
+        <div className="h-96 md:h-full w-full row-span-2  bg-cover bg-no-repeat bg-center  flex justify-center relative " style={{backgroundImage:`url(${imageUrl+profile_path})`}}>
+   <div className=" flex justify-center gap-6 p-2 md:p-10 bg-black10/70 rounded-[10px] absolute top-[80%] ">
+         <div className="flex justify-around flex-wrap gap-5 ">
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Released Year</div>
-            <div>{new Date("2003").getFullYear()}</div>
+            <div className="text-subtitle flex gap-1"><img src="/svg/search.svg" className="w-5 " alt="" />Name</div>
+            <a target="_blank" href={`https://www.google.com/search?q=`+name}>{name}</a>
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/language.svg" className="w-5 " alt="" />Language</div>
+            <div className="text-subtitle flex gap-1"><img src="/svg/location-grey.svg" className="w-5 " alt="" />Place Of Birth</div>
+            <a  target="_blank" href={`https://www.google.com/search?q=`+place_of_birth}>{place_of_birth}</a>
+          </div>
+
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Known For Department </div>
+            
+            <div>{known_for_department}</div>
+          </div>
+         </div>
+         
+      </div>
+        </div>
+
+         <div className=" flex flex-col gap-6 p-2 md:p-10 bg-black10 rounded-[10px] ">
+          <div className="flex justify-around">
+
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Birthday  </div>
+            <div>{new Date(birthday).toDateString()}</div>
+          </div>
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle flex gap-1"><img src="/svg/calendar.svg" className="w-5 " alt="" />Deathday  </div>
+            <div>{deathday?new Date(deathday).toDateString():"Alive"}</div>
+          </div>
+          </div>
+
+          <div className="flex justify-around">
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle flex gap-1"><img src="/svg/gender.svg" className="w-5 " alt="" />Gender</div>
             <div className="flex flex-wrap gap-2.5">
-              {<BadgeComponent  className="text-sm" children={"English"} />  }
+              {gender===1?<BadgeComponent className="text-sm " children={"Female"} />:<BadgeComponent className="text-sm " children={"Male"} /> }
              
             </div>
           </div>
 
-          <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/star.svg" className="w-5 " alt="" />Rating</div>
-            <BadgeComponent
-              children={
-                <div className="flex flex-col gap-2.5">
-                 <BoxRate stars={8} h={18} />
-                  Vote Average : {(8).toFixed(1)}
-                </div>
-              }
-            />
-          </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle flex gap-1"><img src="/svg/category.svg" className="w-5 " alt="" /> Genres</div>
+            <div className="text-subtitle flex gap-1"><img src="/svg/star.svg"className="w-5 " alt="" /> popularity</div>
             <div className="flex flex-wrap gap-2.5">
-              {<BadgeComponent className="text-sm "  children={"genre.name"}  />}
+              {popularity}
             </div>
           </div>
-
-          <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle">Director</div>
-            { <BadgeComponent
-            children={
-              <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={"/images/img.jpg"} />
-                  <div> 
-                    {"person.name"}
-                    <div className="text-subtitle">Department {"person.department"}</div>
-                    </div>
-                </div>
-              }
-              />
-            }
           </div>
 
           <div className="flex flex-col gap-2.5">
-            <div className="text-subtitle">Music</div>
-            {<BadgeComponent
-            children={
-              <div className="flex gap-2.5">
-                    <img className="w-12 h-[50px] object-cover rounded-[6px]" src={"/images/img.jpg"}/>
-                  <div> 
-                    {"name"}
-                    <div className="text-subtitle">Department {"department"}</div>
-                    </div>
-                </div>
-              }
-              />
+            <div className="text-subtitle flex gap-1"><img src="/svg/language.svg" className="w-5 " alt="" />Also known As </div>
+              <div>{also_known_as.map(n=><BadgeComponent className="inline-block m-1.5 " children={n} />)}</div>
+          </div>
+
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle">biography</div>
+            { biography?
+                biography.split("\n").map((line,i)=><p key={i}>{line}</p>):<span>No Biography</span>
             }
           </div>
-        </div>    
+          <div className="flex flex-col gap-2.5">
+            <div className="text-subtitle">Home Page</div>
+            {     homepage?
+                    <a href={homepage} target="_blank">{homepage}</a>:
+                    <span>No Home Page</span>         }
+          </div>
+       
         </div>
+
+
+      
+
+
+</div>
     )
 }
 

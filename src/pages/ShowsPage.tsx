@@ -3,11 +3,11 @@ import ListComponents from "../components/ListComponents";
 import PrimaryButton from "../ui/shared/PrimaryButton";
 import { useState } from "react";
 import IconBorder from "../ui/shared/IconBorder";
-import ListImgCardComponent from "../components/shows movies/ListImgCardComponent";
 import { Category, ShowType } from "../types/types";
 import FreeTrail from "../ui/shared/FreeTrail";
 import { useNavigate } from "react-router";
 import FooterComponent from "../ui/shared/FooterComponent";
+import ListImgCardComponent from "../components/shows movies/ListImgCardComponent";
 
 function ShowsPage() {
   const [navOpen, setNavOpen] = useState<boolean>(false);

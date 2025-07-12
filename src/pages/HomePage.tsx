@@ -1,7 +1,7 @@
 import HeaderComponent from "../ui/shared/HeaderComponent";
-import ListDevices from "../components/homePage/ListDevices";
+import ListDevices from "../ui/homePage/ListDevices";
 import ListPlanComponent from "../components/ListPlanComponent";
-import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
+import ListQuestionComponent from "../ui/homePage/ListQuestionComponent";
 import PrimaryButton from "../ui/shared/PrimaryButton";
 import {  useState } from "react";
 import FreeTrail from "../ui/shared/FreeTrail";

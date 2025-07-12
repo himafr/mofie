@@ -1,5 +1,5 @@
 import { imageUrl } from "../../services/tmdb";
-import {  Movie } from "../../types/moviesTypes";
+import { Movie } from "../../types/moviesTypes";
 
 
 function ImgCardMovieComponent({movie,}:{movie:Movie}) {

@@ -4,7 +4,7 @@ import { useTopRatedMoviesInGenre } from "../feature/movies/useMovieGenre";
 import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import MovieCard from "../ui/shared/MovieCard";
-import Pagination from "../ui/Pagination";
+import Pagination from "../ui/shared/Pagination";
 
 
 function ListPage({isMovie}:{isMovie:boolean}) {

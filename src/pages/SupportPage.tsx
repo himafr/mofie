@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HeaderComponent from "../ui/shared/HeaderComponent";
-import ListQuestionComponent from "../components/homePage/ListQuestionComponent";
+import ListQuestionComponent from "../ui/homePage/ListQuestionComponent";
 import ContactForm from "../ui/shared/ContactForm";
 import FreeTrail from "../ui/shared/FreeTrail";
 import FooterComponent from "../ui/shared/FooterComponent";

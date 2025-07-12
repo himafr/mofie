@@ -10,8 +10,8 @@ import { useNavigate, useParams } from "react-router";
 import { useMovieById, useMovieCredits, useMovieReviews } from "../feature/movies/useMovieGenre";
 import { backDropUrl, imageUrl } from "../services/tmdb";
 import clsx from "clsx";
-import BoxRate from "../ui/BoxRate";
-
+import BoxRate from "../ui/shared/BoxRate";
+import LoadingPage from "../ui/state/LoadingPage";
 
 function MoviePage() {
   const navigate=useNavigate()
@@ -23,9 +23,10 @@ function MoviePage() {
 const isLoading=movieIsLoading||creditsLoading;
 const isError=movieIsError||creditsIsError;
 
+if(isLoading)return <LoadingPage />
+
   if(isError||!movie)return<span>Error :{movieError?.message}</span>
   if(!crew||!cast)return<span>Error :{movieError?.message}</span>
-  if(isLoading)return <span>Loading...</span>
   const {backdrop_path,overview,original_title,release_date,spoken_languages,genres,vote_average}=movie
 
   return (

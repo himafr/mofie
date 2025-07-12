@@ -3,7 +3,7 @@ import { imageUrl } from "../../services/tmdb";
 import { Movie } from "../../types/moviesTypes";
 import { createContext, ReactNode, useContext } from "react";
 import clsx from "clsx";
-import BoxRate from "../BoxRate";
+import BoxRate from "./BoxRate";
 
 const MovieCardContext = createContext<Movie | undefined>(undefined);
 function MovieCard({

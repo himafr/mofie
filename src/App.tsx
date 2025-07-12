@@ -1,10 +1,10 @@
 import { lazy, Suspense } from "react"
 import { BrowserRouter, Route, Routes } from "react-router"
-import LoadingPage from "./state/LoadingPage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import ActorPage from "./pages/ActorPage";
+import LoadingPage from "./ui/state/LoadingPage";
 
 
 const NotFoundPage =lazy(()=> import( "./pages/NotFoundPage"));
