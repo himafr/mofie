@@ -20,7 +20,7 @@ function HeaderComponent({
         <NavLink to="/support">Support </NavLink>
         <NavLink to="/subscriptions">Subscriptions </NavLink>
       </ul>
-      <div className="hidden md:flex gap-4 ">
+      <div className="flex gap-4 ">
         <Modal>
         <Modal.Open opens="search">
         <img src="/svg/search.svg" className="cursor-pointer" alt="" />

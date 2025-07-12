@@ -96,20 +96,19 @@ const ref = useRef<HTMLDivElement | null>(null);
     <Overlay>
      <div
      ref={ref}
-     className="bg-black10 shadow-lg"
+     className="bg-black10 shadow-lg py-[3.2rem] px-1.5 md:px-[4rem]"
   style={{position:'fixed',
     top:'1%',
     left:'50%',
     transform:'translate(-50%, -0%)',
     borderRadius:'var(--border-radius-lg)',
-    padding:'3.2rem 4rem',
     transition:'all 0.5s',
     
   }}>
         <button  className='absolute right-4 top-4 cursor-pointer' onClick={close}>
           X
         </button>
-        <div>{cloneElement(children, { onClose: close })}</div>
+        <div >{cloneElement(children, { onClose: close })}</div>
   </div>
     </Overlay>,
     document.body

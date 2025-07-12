@@ -51,7 +51,8 @@ function MoviesPage() {
 
             <div className="flex flex-col  md:flex-row justify-center gap-3 items-center">
               <PrimaryButton
-                className="items-center h-12 "
+              onClick={() => navigate("/movies/movie/"+playingNow[overview].id)}
+                className="items-center h-12 cursor-pointer "
                 icon={
                   <img
                     className="my-3 "

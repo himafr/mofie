@@ -9,13 +9,13 @@ const Search: React.FC = () => {
     filter == "movie" ? query : ""
   );
   return (
-    <div className="flex justify-center items-center w-3xl">
-      <div className="px-4 text-gray-600 dark:text-gray-300 outline-none focus:outline-none">
-        <div className="relative flex w-full">
+    <div className="flex justify-center items-center md:w-3xl min-w-[100vw] md:min-w-auto">
+      <div className="md:px-4 px-1.5 text-gray-600 dark:text-gray-300 outline-none focus:outline-none">
+        <div className="relative flex w-full mb-2.5">
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-white dark:bg-gray-800 h-10 px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-500 dark:border-gray-600 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
+            className="bg-white dark:bg-gray-800 h-10 md:px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-500 dark:border-gray-600 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
           >
             <option className="font-medium cursor-pointer" value="movie">
               Movies
@@ -30,7 +30,7 @@ const Search: React.FC = () => {
             type="search"
             name="search"
             placeholder="Search"
-            className="bg-white dark:bg-gray-800 h-10 flex px-5 w-full rounded-r-full text-sm focus:outline-none border-2 border-l-0 border-gray-500 dark:border-gray-600"
+            className="bg-white dark:bg-gray-800 h-10 min-w-[9rem] flex px-5 w-full rounded-r-full text-sm focus:outline-none border-2 border-l-0 border-gray-500 dark:border-gray-600 pr-10"
             required
             step="any"
           />
@@ -55,7 +55,7 @@ const Search: React.FC = () => {
             </svg>
           </button>
         </div>
-        <div className="h-[70vh] overflow-auto">
+        <div className="h-[70vh] overflow-auto ">
           {isLoading ? (
             <span>Loading...</span>
           ) : error ? (
