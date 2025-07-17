@@ -23,7 +23,6 @@ export async function getPersonById(
     }
 
     const data: PersonDetails = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Failed to fetch movie credits:", error);

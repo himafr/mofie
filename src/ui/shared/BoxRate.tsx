@@ -16,8 +16,6 @@ function BoxRate({stars,h=8}:{stars:number;h?:number}) {
 function MySvg({width,f}:{width:number;f:number}){
     const fill=f*24;
 
-    console.log("f",f)
-    console.log("first",fill)
     if(f==10){
         return <svg width={width} height={width} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   

@@ -1,6 +1,6 @@
-import {   MovieCreditsResponse, MovieDetails, MovieListResponse, MovieReviewsResponse } from "../types/moviesTypes";
+import { ShowCreditsResponse, ShowDetails, ShowListResponse, ShowReviewsResponse } from "../types/showsTypes";
 import { GenreListResponse } from "../types/types";
-import { moviesGenres } from "./premadeData";
+import {  showsGenres } from "./premadeData";
 import { apiToken, apiUrl } from "./tmdb";
 
 const headers = {
@@ -8,7 +8,7 @@ const headers = {
   Authorization: `Bearer ${apiToken}`,
 };
 
-export async function getMoviesGenres(): Promise<GenreListResponse> {
+export async function getShowsGenres(): Promise<GenreListResponse> {
   //using the api
   // const url = `${apiUrl}genre/movie/list?language=en`;
 
@@ -30,15 +30,15 @@ export async function getMoviesGenres(): Promise<GenreListResponse> {
   //   throw error;
   // }
   //data
-  const data: GenreListResponse = moviesGenres;
+  const data: GenreListResponse = showsGenres;
   return data;
 }
 
-export async function getPopularMoviesInGenre(
+export async function getPopularShowsInGenre(
   id: number | undefined,
   page = 1
-): Promise<MovieListResponse> {
-  const url = `${apiUrl}discover/movie?with_genres=${id}&sort_by=vote_average.desc&&language=en-US&page=${page}`;
+): Promise<ShowListResponse> {
+  const url = `${apiUrl}discover/tv?with_genres=${id}&sort_by=vote_average.desc&&language=en-US&page=${page}`;
   const options = {
     method: "GET",
     headers,
@@ -49,19 +49,19 @@ export async function getPopularMoviesInGenre(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie genres:", error);
     throw error;
   }
 }
-export async function getTopRatedMoviesInGenre(
+export async function getTopRatedShowsInGenre(
   id: number | undefined,
   page = 1
-): Promise<MovieListResponse> {
+): Promise<ShowListResponse> {
   if (!id) throw new Error("Genre ID is required");
-  const url = `${apiUrl}discover/movie?with_genres=${id}&sort_by=popularity.desc&language=en-US&page=${page}`;
+  const url = `${apiUrl}discover/tv?with_genres=${id}&sort_by=popularity.desc&language=en-US&page=${page}`;
   const options = {
     method: "GET",
     headers,
@@ -73,7 +73,7 @@ export async function getTopRatedMoviesInGenre(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie genres:", error);
@@ -81,10 +81,10 @@ export async function getTopRatedMoviesInGenre(
   }
 }
 
-export async function getMustWatchMovies(
+export async function getMustWatchShows(
   page = 1
-): Promise<MovieListResponse> {
-  const url = `${apiUrl}movie/top_rated?language=en-US&page=${page}`;
+): Promise<ShowListResponse> {
+  const url = `${apiUrl}tv/top_rated?language=en-US&page=${page}`;
   const options = {
     method: "GET",
     headers,
@@ -96,7 +96,7 @@ export async function getMustWatchMovies(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie genres:", error);
@@ -104,10 +104,10 @@ export async function getMustWatchMovies(
   }
 }
 
-export async function getUpcomingMovies(
+export async function getUpcomingShows(
   page = 1
-): Promise<MovieListResponse> {
-  const url = `${apiUrl}movie/upcoming?language=en-US&page=${page}`;
+): Promise<ShowListResponse> {
+  const url = `${apiUrl}tv/on_the_air?language=en-US&page=${page}`;
   const options = {
     method: "GET",
     headers,
@@ -119,17 +119,17 @@ export async function getUpcomingMovies(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie genres:", error);
     throw error;
   }
 }
-export async function getPlayingNowMovies(
+export async function getPlayingNowShows(
   page = 1
-): Promise<MovieListResponse> {
-  const url = `${apiUrl}movie/now_playing?language=en-US&page${page}`;
+): Promise<ShowListResponse> {
+  const url = `${apiUrl}tv/airing_today?language=en-US&page${page}`;
   const options = {
     method: "GET",
     headers,
@@ -141,7 +141,7 @@ export async function getPlayingNowMovies(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movies:", error);
@@ -149,11 +149,11 @@ export async function getPlayingNowMovies(
   }
 }
 
-export async function getMovieById(
+export async function getShowById(
   id:string|undefined
-): Promise<MovieDetails> {
+): Promise<ShowDetails> {
    if(id==undefined)throw new Error("there is no movie selected")
-  const url = `${apiUrl}movie/${id}?language=en-US`;
+  const url = `${apiUrl}tv/${id}?language=en-US`;
   const options = {
     method: "GET",
     headers,
@@ -165,18 +165,18 @@ export async function getMovieById(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieDetails = await response.json();
+    const data: ShowDetails = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie details:", error);
     throw error;
   }
 }
-export async function getMovieCredits(
+export async function getShowCredits(
   id:string|undefined
-): Promise<MovieCreditsResponse> {
+): Promise<ShowCreditsResponse> {
    if(id==undefined)throw new Error("there is no movie selected")
-  const url = `${apiUrl}/movie/${id}/credits`;
+  const url = `${apiUrl}/tv/${id}/credits`;
   const options = {
     method: "GET",
     headers,
@@ -188,18 +188,18 @@ export async function getMovieCredits(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieCreditsResponse = await response.json();
+    const data: ShowCreditsResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie credits:", error);
     throw error;
   }
 }
-export async function getMovieReviews(
+export async function getShowReviews(
   id:string|undefined
-): Promise<MovieReviewsResponse> {
+): Promise<ShowReviewsResponse> {
    if(id==undefined)throw new Error("there is no movie selected")
-  const url = `${apiUrl}/movie/${id}/reviews?page=1`;
+  const url = `${apiUrl}/tv/${id}/reviews?page=1`;
   const options = {
     method: "GET",
     headers,
@@ -211,18 +211,18 @@ export async function getMovieReviews(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieReviewsResponse = await response.json();
+    const data: ShowReviewsResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie credits:", error);
     throw error;
   }
 }
-export async function getMovieBySearch(
+export async function getShowBySearch(
   query:string
-): Promise<MovieListResponse> {
+): Promise<ShowListResponse> {
   if(query.length<=3) return {page:0,results:[],total_pages:0,total_results:0}
-  const url = `${apiUrl}search/movie?query=${encodeURIComponent(query)}`;
+  const url = `${apiUrl}search/tv?query=${encodeURIComponent(query)}`;
   const options = {
     method: "GET",
     headers,
@@ -234,7 +234,7 @@ export async function getMovieBySearch(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: MovieListResponse = await response.json();
+    const data: ShowListResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch movie credits:", error);

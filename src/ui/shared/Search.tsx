@@ -1,6 +1,7 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import SearchResult from "./SearchResult";
-import { useMovieBySearch } from "../../hooks/useSearch";
+import { useMovieBySearch, useShowBySearch } from "../../hooks/useSearch";
+import SearchResultShow from "./SearchResultShows";
 
 const Search: React.FC = () => {
   const [filter, setFilter] = useState("movie");
@@ -8,13 +9,24 @@ const Search: React.FC = () => {
   const { movies, error, isLoading } = useMovieBySearch(
     filter == "movie" ? query : ""
   );
+
+  const {
+    shows,
+    error: showError,
+    isLoading: ShowIsLoading,
+  } = useShowBySearch(filter == "show" ? query : "");
+
+
   return (
     <div className="flex justify-center items-center md:w-3xl min-w-[100vw] md:min-w-auto">
       <div className="md:px-4 px-1.5 text-gray-600 dark:text-gray-300 outline-none focus:outline-none">
         <div className="relative flex w-full mb-2.5">
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={(e) => {
+              setQuery(query+" ")
+              setFilter(e.target.value)
+            }}
             className="bg-white dark:bg-gray-800 h-10 md:px-5 rounded-l-full text-sm focus:outline-none outline-none border-2 border-gray-500 dark:border-gray-600 border-r-1 cursor-pointer max-h-10 overflow-y-hidden"
           >
             <option className="font-medium cursor-pointer" value="movie">
@@ -56,15 +68,16 @@ const Search: React.FC = () => {
           </button>
         </div>
         <div className="h-[70vh] overflow-auto ">
-          {isLoading ? (
-            <span>Loading...</span>
-          ) : error ? (
-            <span>{error.message}</span>
-          ) : (
-            movies?.map((movie) => (
-              <SearchResult key={movie.id} movie={movie} />
-            ))
-          )}
+          {(isLoading || ShowIsLoading)&& <span>Loading...</span>}
+          {(!error ||showError) && <span>{error?.message || showError?.message}</span>}
+
+          {movies?.map((movie) => (
+            <SearchResult key={movie.id} movie={movie} />
+          ))}
+
+          {shows?.map((show) => (
+            <SearchResultShow key={show.id} show={show} />
+          ))}
         </div>
       </div>
     </div>

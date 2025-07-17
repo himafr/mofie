@@ -1,16 +1,18 @@
 import { useState } from "react";
 import EpisodeComponent from "./EpisodeComponent";
+import { Season } from "../../types/showsTypes";
 
-function SeasonComponent({season}:{season:string}) {
+function SeasonComponent({season}:{season:Season}) {
     const [openEpisode, setOPenEpisode] = useState<boolean>(false);
+    const {name,episode_count}=season
     return (
        <div className="bg-black06 py-3 px-2 md:py-6 md:px-12  rounded-xl max-h-[780px] overflow-y-auto mb-4 border border-border">
               <div className="flex justify-between">
                 <div className="text-subtitle flex gap-2.5 text-lg items-center">
                   <p className="text-white font-semibold text-2xl">
-                   { season }
+                   { name }
                   </p>
-                  9 Episodes
+                  {episode_count} Episodes
                 </div>
                 <div className="p-3.5 bg-black08 rounded-full">
                  <img
@@ -24,13 +26,7 @@ function SeasonComponent({season}:{season:string}) {
                 </div>
               </div>
               <div className={`${!openEpisode && "hidden"} mt-6 `}>
-                <EpisodeComponent />
-                <EpisodeComponent />
-                <EpisodeComponent />
-                <EpisodeComponent />
-                <EpisodeComponent />
-                <EpisodeComponent />
-                <EpisodeComponent />
+                {Array.from({length:episode_count}).map((_,index)=> <EpisodeComponent epNum={index+1} key={index} season={season} />)}
               </div>
             </div>
     )

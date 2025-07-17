@@ -1,25 +1,25 @@
 import { useNavigate } from "react-router"
 import { backDropUrl } from "../../services/tmdb"
-import { Movie } from "../../types/moviesTypes"
 import BadgeComponent from "./BadgeComponent"
 import clsx from "clsx"
+import { Show } from "../../types/showsTypes"
 
-const SearchResult : React.FC<{movie:Movie}> =({movie})=> {
+const SearchResultShow : React.FC<{show:Show}> =({show})=> {
     const navigate=useNavigate()
-    const {title,backdrop_path,overview,vote_average,id}=movie
+    const {name,backdrop_path,overview,vote_average,id}=show
     return (
         <div className="flex flex-row-reverse md:flex-row justify-around items-center relative pb-10 pt-[30px] gap-4 md:px-5 cursor-pointer hover:bg-hover" 
-        onClick={()=>navigate("/movies/movie/"+id)}>
+        onClick={()=>navigate("/shows/show/"+id)}>
          <div className="absolute top-0 bg-gradient-to-r from-5% via-25% from-dark via-[#262626] to-dark h-[2px] w-full" />
 
             <div className="flex  flex-row gap-4">
                 <div className="flex justify-around items-center">
 
                 <img src={backDropUrl+backdrop_path}
-                 className={clsx("w-[172px]  rounded-lg object-cover border border-border",!backdrop_path&&"max-w-[60px]")} alt={title?.slice(0,10)} />
+                 className={clsx("w-[172px]  rounded-lg object-cover border border-border",!backdrop_path&&"max-w-[60px]")} alt={name?.slice(0,10)} />
                 </div >
                 <div>
-                    <h3 className="font-semibold text-lg mt-2 block">{title}</h3>
+                    <h3 className="font-semibold text-lg mt-2 block">{name}</h3>
                     <p className="text-subtitle mt-2 block">{window.innerWidth<450?overview?.slice(0,30): overview?.slice(0,100)}...</p>
                 </div>
                 <div className="hidden md:block">
@@ -40,4 +40,4 @@ const SearchResult : React.FC<{movie:Movie}> =({movie})=> {
     )
 }
 
-export default SearchResult
+export default SearchResultShow

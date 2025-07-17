@@ -1,35 +1,35 @@
 import { useNavigate } from "react-router";
 import { imageUrl } from "../../services/tmdb";
-import { Movie } from "../../types/moviesTypes";
 import { createContext, ReactNode, useContext } from "react";
 import clsx from "clsx";
 import BoxRate from "./BoxRate";
+import { Show } from "../../types/showsTypes";
 
-const MovieCardContext = createContext<Movie | undefined>(undefined);
-function MovieCard({
-  movie,
+const ShowCardContext = createContext<Show | undefined>(undefined);
+function ShowCard({
+  show,
   children,
   className
 }: {
-  movie: Movie;
+  show: Show;
   children?: ReactNode;
   className?:string
 }) {
   return (
-    <MovieCardContext.Provider value={{ ...movie }}>
+    <ShowCardContext.Provider value={{ ...show }}>
       <div className={clsx("w-[90px] md:w-[295.4px] md:p-[30px] p-1.5 py-3 bg-[#1A1A1A] md:min-w-[295px] min-w-[115px] rounded-[10px] border border-border",className)}>
-        <MovieCard.Poster />
+        <ShowCard.Poster />
         <div className="flex flex-row justify-around relative top-2 items-center">
           {children}
         </div>
       </div>
-    </MovieCardContext.Provider>
+    </ShowCardContext.Provider>
   );
 }
 function Poster() {
-  const movie = useContext(MovieCardContext);
-  if (!movie) throw new Error("MovieCardContext is undefined!");
-  const { poster_path } = movie;
+  const show = useContext(ShowCardContext);
+  if (!show) throw new Error("ShowCardContext is undefined!");
+  const { poster_path } = show;
   const navigate = useNavigate();
   return (
     <div className="bg-linear-to-t relative ">
@@ -37,15 +37,15 @@ function Poster() {
         className="object-cover rounded-xl border border-border cursor-pointer"
         src={imageUrl + poster_path}
         alt=""
-        onClick={() => navigate(`/movies/movie/${movie.id}`)}
+        onClick={() => navigate(`/shows/show/${show.id}`)}
       />
     </div>
   );
 }
 function Vote() {
-  const movie = useContext(MovieCardContext);
-  if (!movie) throw new Error("MovieCardContext is undefined!");
-  const { vote_count } = movie;
+  const show = useContext(ShowCardContext);
+  if (!show) throw new Error("ShowCardContext is undefined!");
+  const { vote_count } = show;
 
   return (
     <div className=" flex justify-between items-end bg-black08 gap-2 py-1.5 px-3.5 rounded-4xl">
@@ -59,9 +59,9 @@ function Vote() {
   );
 }
 function Rated() {
-  const movie = useContext(MovieCardContext);
-  if (!movie) throw new Error("MovieCardContext is undefined!");
-  const { vote_average } = movie;
+  const show = useContext(ShowCardContext);
+  if (!show) throw new Error("ShowCardContext is undefined!");
+  const { vote_average } = show;
 
   return (
     <div className=" flex justify-between items-center bg-black08 gap-2 py-1.5 px-3.5 rounded-4xl ">
@@ -72,32 +72,32 @@ function Rated() {
   );
 }
 function Title() {
-  const movie=useContext(MovieCardContext)
-      if (!movie) throw new Error("MovieCardContext is undefined!");
-      const {title}=movie;
+  const show=useContext(ShowCardContext)
+      if (!show) throw new Error("ShowCardContext is undefined!");
+      const {name}=show;
   return (
     <div className="  bg-black08  p-1  md:px-2 rounded-4xl">
-      <div className="text-subtitle text-xs">{title}</div>
+      <div className="text-subtitle text-xs">{name}</div>
     </div>
   );
 }
 function ReleaseDate() {
-  const movie=useContext(MovieCardContext)
-      if (!movie) throw new Error("MovieCardContext is undefined!");
-      const {release_date}=movie;
+  const show=useContext(ShowCardContext)
+      if (!show) throw new Error("ShowCardContext is undefined!");
+      const {first_air_date}=show;
   return (
     <div className=" flex justify-between items-end bg-black08 gap-2 py-1.5 px-3.5 rounded-4xl border border-border">
       <div className="text-subtitle text-xs flex gap-2.5 items-center">
         <img src="/svg/clock.svg" width={20} />
-        {new Date(release_date).toDateString()}
+        {new Date(first_air_date).toDateString()}
       </div>
     </div>
   );
 }
 function Popularity() {
-  const movie=useContext(MovieCardContext)
-      if (!movie) throw new Error("MovieCardContext is undefined!");
-      const {popularity}=movie;
+  const show=useContext(ShowCardContext)
+      if (!show) throw new Error("ShowCardContext is undefined!");
+      const {popularity}=show;
   return (
     <div className=" flex justify-between items-end bg-black08 gap-2 py-1.5 px-3.5 rounded-4xl border border-border">
       <img src="/svg/trend.svg" width={20} />
@@ -106,11 +106,11 @@ function Popularity() {
   );
 }
 
-MovieCard.Poster = Poster;
-MovieCard.Title = Title;
-MovieCard.ReleaseDate = ReleaseDate;
-MovieCard.Popularity = Popularity;
-MovieCard.Vote = Vote;
-MovieCard.Rated = Rated;
+ShowCard.Poster = Poster;
+ShowCard.Title = Title;
+ShowCard.ReleaseDate = ReleaseDate;
+ShowCard.Popularity = Popularity;
+ShowCard.Vote = Vote;
+ShowCard.Rated = Rated;
 
-export default MovieCard;
+export default ShowCard;
