@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import SearchResult from "./SearchResult";
 import { useMovieBySearch, useShowBySearch } from "../../hooks/useSearch";
 import SearchResultShow from "./SearchResultShows";
