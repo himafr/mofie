@@ -47,12 +47,13 @@ echo "REACT_APP_TMDB_API_KEY=your_api_key_here" > .env
 npm start
 
 The app will run on http://localhost:3000 by default.
-
-🌐 Live Demo
+```
+---
+## 🌐 Live Demo
 
 Want to see it in action? 👉 Live Site (https://mofie-tv.netlify.app/)
 
-📸 Screenshots
+## 📸 Screenshots
 ![Homepage](screenshots/home.png)
 ![Search](screenshots/search.png)
 ![Movie](screenshots/movie.png)
@@ -61,10 +62,10 @@ Want to see it in action? 👉 Live Site (https://mofie-tv.netlify.app/)
 ![List-Movies-Shows](screenshots/list.png)
 ![Show](screenshots/show.png)
 
-🤝 Contributing
+## 🤝 Contributing
 Contributions are welcome! If you'd like to improve the app, feel free to fork the repo and submit a pull request.
 
-bash
+``` bash
 # Fork the project
 # Create your feature branch
 git checkout -b feature/YourFeature
@@ -76,9 +77,10 @@ git commit -m 'Add YourFeature'
 git push origin feature/YourFeature
 
 # Open a pull request
-
-📄 License
+```
+---
+## 📄 License
 This project is licensed under the MIT License. Feel free to use, modify, and distribute with attribution.
 
-🙋‍♂️ Author
+## 🙋‍♂️ Author
 Hema – Full-stack developer passionate about automation, clean UI, and hands-on learning. 📎 GitHub Profile
