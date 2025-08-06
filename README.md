@@ -1,50 +1,84 @@
-# React + TypeScript + Vite
+# 🎬 Mofie – Movie Discovery Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mofie is a sleek and responsive movie browsing platform built with **React.js** and powered by the **TMDB API**. It allows users to explore trending films, search by title, and view detailed movie information—all wrapped in a clean, modern UI optimized for both desktop and mobile.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔥 Trending Movies: Displays the latest popular films on the homepage  
+- 🔍 Search Functionality: Search for movies by title with real-time results  
+- 📄 Movie Details: View posters, overviews, ratings, release dates, and more  
+- 🌙 Dark Mode *(optional)*: Toggle between light and dark themes for better UX  
+- 📱 Responsive Design: Fully optimized for mobile, tablet, and desktop screens  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+| Technology     | Purpose                          |
+|----------------|----------------------------------|
+| React.js       | Frontend framework               |
+| TMDB API       | Movie data source                |
+| Axios          | API requests                     |
+| React Router   | Client-side routing              |
+| CSS Modules    | Component-scoped styling         |
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 📦 Installation & Setup
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+To run Mofie locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/himafr/mofie.git
+
+# Navigate into the project folder
+cd mofie
+
+# Install dependencies
+npm install
+
+# Create a .env file and add your TMDB API key
+echo "REACT_APP_TMDB_API_KEY=your_api_key_here" > .env
+
+# Start the development server
+npm start
+
+The app will run on http://localhost:3000 by default.
+
+🌐 Live Demo
+
+Want to see it in action? 👉 Live Site (https://mofie-tv.netlify.app/)
+
+📸 Screenshots
+![Homepage](screenshots/home.png)
+![Search](screenshots/search.png)
+![Movie](screenshots/movie.png)
+![Support](screenshots/support.png)
+![Question](screenshots/question.png)
+![List-Movies-Shows](screenshots/list.png)
+![Show](screenshots/show.png)
+
+🤝 Contributing
+Contributions are welcome! If you'd like to improve the app, feel free to fork the repo and submit a pull request.
+
+bash
+# Fork the project
+# Create your feature branch
+git checkout -b feature/YourFeature
+
+# Commit your changes
+git commit -m 'Add YourFeature'
+
+# Push to the branch
+git push origin feature/YourFeature
+
+# Open a pull request
+
+📄 License
+This project is licensed under the MIT License. Feel free to use, modify, and distribute with attribution.
+
+🙋‍♂️ Author
+Hema – Full-stack developer passionate about automation, clean UI, and hands-on learning. 📎 GitHub Profile

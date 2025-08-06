@@ -25,7 +25,7 @@ function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
 
       <BrowserRouter>
         <Suspense fallback={<LoadingPage />}>
