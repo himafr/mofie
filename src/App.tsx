@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import LoadingPage from "./ui/state/LoadingPage";
@@ -25,7 +24,6 @@ function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools /> */}
 
       <BrowserRouter>
         <Suspense fallback={<LoadingPage />}>
